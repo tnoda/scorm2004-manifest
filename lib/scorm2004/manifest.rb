@@ -1,3 +1,5 @@
 module Scorm2004
-  module Manifest; end
+  module Manifest
+    class Error < StandardError; end
+  end
 end
