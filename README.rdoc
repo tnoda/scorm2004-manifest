@@ -1,0 +1,82 @@
+= scorm2004-manifest
+
+scorm2004-manifest is a manifest file parser/validator for SCORM 2004.
+It currently supports SCORM 2004 4th Edition Content Aggregation Model
+(CAM) Version 1.1.
+
+== Installing
+
+To install scorm2004-manifest, use the following command:
+
+   $ gem install scorm2004-manifest
+
+== Requirements
+
+* ruby 1.9.3
+* nokogiri
+* activesupport
+
+== Usage
+
+=== Parsing Manifest File
+
+scorm2004-manifest is designed for use with Nokogiri's visitor pattern
+features. By a manifest visitor visiting a <manifest> element, it
+builds an object tree from a manifest file.
+
+    require 'nokogiri'
+
+    manifest_element = Nokogiri::XML(open('imsmanifest.xml')).root
+    manifest = manifest_element.accept(Scorm2004::Manifest::ManifestVisitor.new)
+
+=== Traversing Object Tree
+
+Each object in the object tree contains its attributes and its child
+elements, which can be accessed as Ruby attributes. The following is
+an example when scorm2004-manifest parses the reference package,
+XXXXXXXX, provided by ADL:
+
+    manifest.version #=>
+    manifest.identifier #=>
+    organizations = manifest.organizations
+    organizations.organizations.size #=>
+    organization = organizations.organizations[0]
+    organization.identifier #=>
+    organization.title #=>
+    organization.items.size #=>
+    item_0 = organization.items[0]
+    item_1 = organization.items[1]
+    item_0.identifier #=>
+    item_0.title #=>
+    # ....
+
+The XML attributes and the child elements of each element can be
+accessed as Ruby attributes whose names are underscored. Their
+namespace prefixes are removed from the Ruby attribute names except
+for +adl_objective+ . If an XML element has one or more child elements
+with the same name, their Ruby attribute name is pluralized.
+
+=== Generating Documentation
+
+To generate scorm2004-manifest's documentation, use the following command:
+
+   $ git clone git://github.com/tnoda/scorm2004-manifest.git
+   $ cd scorm2004-manifest
+   $ rake yard
+
+The documentation will be generated under the +doc+ directoy.
+
+== Contributing to scorm2004-manifest
+
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
+* Fork the project.
+* Start a feature/bugfix branch.
+* Commit and push until you are happy with your contribution.
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== Copyright
+
+Copyright (c) 2012 Takahiro Noda. See LICENSE.txt for further details.
+
