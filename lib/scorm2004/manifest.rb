@@ -1,3 +1,4 @@
+require 'active_support/core_ext'
 require 'scorm2004/manifest/visitor_pattern'
 
 module Scorm2004
