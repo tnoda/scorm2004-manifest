@@ -15,3 +15,4 @@ require 'mocha'
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'scorm2004-manifest'
+require 'scorm2004/manifest/partial_manifest'
