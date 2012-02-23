@@ -1,3 +1,5 @@
+require 'scorm2004/manifest/visitor_pattern'
+
 module Scorm2004
   module Manifest
     class Error < StandardError; end
