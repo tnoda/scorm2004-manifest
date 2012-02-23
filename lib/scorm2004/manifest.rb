@@ -1,5 +1,6 @@
 require 'active_support/core_ext'
 require 'scorm2004/manifest/visitor_pattern'
+require 'scorm2004/manifest/custom_error'
 
 module Scorm2004
   module Manifest
