@@ -25,9 +25,19 @@ module Scorm2004
       end
 
       context 'Visitor with do_visit method' do
+        class PrivateDoVisit
+          include VisitorPattern
+
+          private
+
+          def do_visit
+            do_visit_probe
+          end
+        end
+
         setup do
-          @v = DumbVisitor.new
-          @v.expects(:do_visit)
+          @v = PrivateDoVisit.new
+          @v.expects(:do_visit_probe)
         end
 
         should 'call do_visit method' do

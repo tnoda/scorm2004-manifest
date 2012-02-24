@@ -10,7 +10,7 @@ module Scorm2004
       def visit(el)
         @el = el
         check_attributes if self.class.respond_to?(:attributes)
-        do_visit         if self.respond_to?(:do_visit)
+        do_visit         if self.respond_to?(:do_visit, true)
         visit_children   if self.class.respond_to?(:children)
         self
       end
