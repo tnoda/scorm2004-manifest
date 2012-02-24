@@ -25,9 +25,19 @@ module Scorm2004
       end
 
       context 'Visitor with do_visit method' do
+        class PrivateDoVisit
+          include VisitorPattern
+
+          private
+
+          def do_visit
+            do_visit_probe
+          end
+        end
+
         setup do
-          @v = DumbVisitor.new
-          @v.expects(:do_visit)
+          @v = PrivateDoVisit.new
+          @v.expects(:do_visit_probe)
         end
 
         should 'call do_visit method' do
@@ -49,6 +59,24 @@ module Scorm2004
         should 'call check_foo if attributes include foo when visiting an element' do
           @v.class.stubs(:attributes).returns([:foo])
           @v.expects(:check_foo)
+          el('<dummy />').accept(@v)
+        end
+      end
+
+      context 'Visitor with the children class method' do
+        setup do
+          @v = DumbVisitor.new
+          @v.class.stubs(:children)
+        end
+
+        should 'call the visit_children method when visiting an element' do
+          @v.expects(:visit_children)
+          el('<dummy />').accept(@v)
+        end
+
+        should 'call visit_foo if children include foo when visiting an element' do
+          @v.class.stubs(:children).returns([:foo])
+          @v.expects(:visit_foo)
           el('<dummy />').accept(@v)
         end
       end

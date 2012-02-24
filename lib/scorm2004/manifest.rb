@@ -2,6 +2,7 @@ require 'active_support/core_ext'
 require 'scorm2004/manifest/visitor_pattern'
 require 'scorm2004/manifest/custom_error'
 require 'scorm2004/manifest/attributes'
+require 'scorm2004/manifest/children'
 
 module Scorm2004
   module Manifest
