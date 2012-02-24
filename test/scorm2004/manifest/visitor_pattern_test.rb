@@ -52,6 +52,24 @@ module Scorm2004
           el('<dummy />').accept(@v)
         end
       end
+
+      context 'Visitor with the children class method' do
+        setup do
+          @v = DumbVisitor.new
+          @v.class.stubs(:children)
+        end
+
+        should 'call the visit_children method when visiting an element' do
+          @v.expects(:visit_children)
+          el('<dummy />').accept(@v)
+        end
+
+        should 'call visit_foo if children include foo when visiting an element' do
+          @v.class.stubs(:children).returns([:foo])
+          @v.expects(:visit_foo)
+          el('<dummy />').accept(@v)
+        end
+      end
     end
   end
 end
