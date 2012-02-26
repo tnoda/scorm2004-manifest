@@ -3,6 +3,7 @@ require 'scorm2004/manifest/visitor_pattern'
 require 'scorm2004/manifest/custom_error'
 require 'scorm2004/manifest/attributes'
 require 'scorm2004/manifest/children'
+require 'scorm2004/manifest/xml_base'
 
 module Scorm2004
   module Manifest
