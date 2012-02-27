@@ -15,7 +15,7 @@ module Scorm2004
           include CustomError
           include Children
 
-          has_one_and_only_one('./imscp:childrenTest')
+          has_one_and_only_one('imscp:childrenTest')
         end
 
         setup do
@@ -68,7 +68,7 @@ XML
           include CustomError
           include Children
 
-          has_zero_or_one('./imscp:childrenTest')
+          has_zero_or_one('imscp:childrenTest')
         end
 
         setup do
@@ -121,7 +121,7 @@ XML
           include CustomError
           include Children
 
-          has_one_or_more('./imscp:childrenTest')
+          has_one_or_more('imscp:childrenTest')
         end
 
         setup do
@@ -194,7 +194,7 @@ XML
           include CustomError
           include Children
 
-          has_zero_or_more('./imscp:childrenTest')
+          has_zero_or_more('imscp:childrenTest')
         end
 
         setup do
