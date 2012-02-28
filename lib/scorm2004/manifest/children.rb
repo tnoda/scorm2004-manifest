@@ -8,10 +8,12 @@ module Scorm2004
       private
 
       def at(xpath)
+        xpath = './' + xpath unless /^\.\// =~ xpath
         el.at(xpath, NS)
       end
 
       def search(xpath)
+        xpath = './' + xpath unless /^\.\// =~ xpath
         el.search(xpath, NS)
       end
 
