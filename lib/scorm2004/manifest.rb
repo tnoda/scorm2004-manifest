@@ -9,6 +9,7 @@ require 'scorm2004/manifest/manifest'
 require 'scorm2004/manifest/schema'
 require 'scorm2004/manifest/schemaversion'
 require 'scorm2004/manifest/resources'
+require 'scorm2004/manifest/href'
 
 module Scorm2004
   module Manifest
