@@ -72,7 +72,7 @@ module Scorm2004
         def define_visitor(name)
           define_method("#{name}_visitor".intern) do
             options = respond_to?(:base) ? { :base => base } : {}
-            "Scorm2004::Manifest::#{name.classify}Visitor".constantize.new(options)
+            "Scorm2004::Manifest::#{name.classify}".constantize.new(options)
           end
         end
       end

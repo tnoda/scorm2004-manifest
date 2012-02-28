@@ -2,7 +2,11 @@ require_relative '../../helper'
 
 module Scorm2004
   module Manifest
-    class ChildrenTestVisitor
+    class Son
+      include VisitorPattern
+    end
+
+    class Grandson
       include VisitorPattern
     end
 
@@ -15,7 +19,7 @@ module Scorm2004
           include CustomError
           include Children
 
-          has_one_and_only_one('imscp:childrenTest')
+          has_one_and_only_one('imscp:son')
         end
 
         setup do
@@ -24,19 +28,19 @@ module Scorm2004
 
         context 'visiting an element with one child' do
           should 'visit the only one child' do
-            @v.expects(:visit_children_test).once
-            assert el('<dummy><childrenTest /></dummy>').accept(@v)
+            @v.expects(:visit_son).once
+            assert el('<dummy><son /></dummy>').accept(@v)
           end
 
           should 'provide an accessor method for the child' do
-            el('<dummy><childrenTest /></dummy>').accept(@v)
-            assert @v.respond_to?(:children_test)
-            assert_kind_of ChildrenTestVisitor, @v.children_test
+            el('<dummy><son /></dummy>').accept(@v)
+            assert @v.respond_to?(:son)
+            assert_kind_of Son, @v.son
           end
 
           should 'call a visitor factory method during the visit' do
-            @v.expects(:children_test_visitor).once.returns(mock(:visit))
-            el('<dummy><childrenTest /></dummy>').accept(@v)
+            @v.expects(:son_visitor).once.returns(mock(:visit))
+            el('<dummy><son /></dummy>').accept(@v)
           end
         end
 
@@ -53,8 +57,8 @@ module Scorm2004
             assert_raise VisitorHasOneAndOnlyOneChild::Error do
               el(<<XML).accept(@v)
 <dummy>
-  <childrenTest />
-  <childrenTest />
+  <son />
+  <son />
 </dummy>
 XML
             end
@@ -68,7 +72,7 @@ XML
           include CustomError
           include Children
 
-          has_zero_or_one('imscp:childrenTest')
+          has_zero_or_one('imscp:son')
         end
 
         setup do
@@ -77,19 +81,19 @@ XML
 
         context 'visiting an element with one child' do
           should 'visit the only one child' do
-            @v.expects(:visit_children_test).once
-            assert el('<dummy><childrenTest /></dummy>').accept(@v)
+            @v.expects(:visit_son).once
+            assert el('<dummy><son /></dummy>').accept(@v)
           end
 
           should 'provide an accessor method for the child' do
-            el('<dummy><childrenTest /></dummy>').accept(@v)
-            assert @v.respond_to?(:children_test)
-            assert_kind_of ChildrenTestVisitor, @v.children_test
+            el('<dummy><son /></dummy>').accept(@v)
+            assert @v.respond_to?(:son)
+            assert_kind_of Son, @v.son
           end
 
           should 'call a visitor factory method during the visit' do
-            @v.expects(:children_test_visitor).once.returns(mock(:visit))
-            el('<dummy><childrenTest /></dummy>').accept(@v)
+            @v.expects(:son_visitor).once.returns(mock(:visit))
+            el('<dummy><son /></dummy>').accept(@v)
           end
         end
 
@@ -106,8 +110,8 @@ XML
             assert_raise VisitorHasZeroOrOneChild::Error do
               el(<<XML).accept(@v)
 <dummy>
-  <childrenTest />
-  <childrenTest />
+  <son />
+  <son />
 </dummy>
 XML
             end
@@ -121,7 +125,7 @@ XML
           include CustomError
           include Children
 
-          has_one_or_more('imscp:childrenTest')
+          has_one_or_more('imscp:son')
         end
 
         setup do
@@ -138,29 +142,29 @@ XML
 
         context 'visiting an element with a child' do
           should 'visit the child' do
-            @v.expects(:visit_children_tests)
-            assert el('<dummy><childrenTest /></dummy>').accept(@v)
+            @v.expects(:visit_sons)
+            assert el('<dummy><son /></dummy>').accept(@v)
           end
 
           should 'provide an accessor method for children' do
-            el('<dummy><childrenTest /></dummy>').accept(@v)
-            assert_kind_of Array, @v.children_tests
-            assert_equal 1, @v.children_tests.size
+            el('<dummy><son /></dummy>').accept(@v)
+            assert_kind_of Array, @v.sons
+            assert_equal 1, @v.sons.size
           end
 
           should 'call a visitor factory method during the visit' do
-            @v.expects(:children_test_visitor).once.returns(mock(:visit))
-            el('<dummy><childrenTest /></dummy>').accept(@v)
+            @v.expects(:son_visitor).once.returns(mock(:visit))
+            el('<dummy><son /></dummy>').accept(@v)
           end
         end
         
         context 'visiting an element with two children' do
           should 'visit the children' do
-            @v.expects(:visit_children_tests)
+            @v.expects(:visit_sons)
             assert el(<<XML).accept(@v)
 <dummy>
-  <childrenTest />
-  <childrenTest />
+  <son />
+  <son />
 </dummy>
 XML
           end
@@ -168,20 +172,20 @@ XML
           should 'provide an accessor method for children' do
             assert el(<<XML).accept(@v)
 <dummy>
-  <childrenTest />
-  <childrenTest />
+  <son />
+  <son />
 </dummy>
 XML
-            assert_kind_of Array, @v.children_tests
-            assert_equal 2, @v.children_tests.size
+            assert_kind_of Array, @v.sons
+            assert_equal 2, @v.sons.size
           end
 
           should 'call a visitor factory method during the visit' do
-            @v.expects(:children_test_visitor).twice.returns(stub(:visit))
+            @v.expects(:son_visitor).twice.returns(stub(:visit))
             assert el(<<XML).accept(@v)
 <dummy>
-  <childrenTest />
-  <childrenTest />
+  <son />
+  <son />
 </dummy>
 XML
           end
@@ -194,7 +198,7 @@ XML
           include CustomError
           include Children
 
-          has_zero_or_more('imscp:childrenTest')
+          has_zero_or_more('imscp:son')
         end
 
         setup do
@@ -211,29 +215,29 @@ XML
 
         context 'visiting an element with a child' do
           should 'visit the child' do
-            @v.expects(:visit_children_tests)
-            assert el('<dummy><childrenTest /></dummy>').accept(@v)
+            @v.expects(:visit_sons)
+            assert el('<dummy><son /></dummy>').accept(@v)
           end
 
           should 'provide an accessor method for children' do
-            el('<dummy><childrenTest /></dummy>').accept(@v)
-            assert_kind_of Array, @v.children_tests
-            assert_equal 1, @v.children_tests.size
+            el('<dummy><son /></dummy>').accept(@v)
+            assert_kind_of Array, @v.sons
+            assert_equal 1, @v.sons.size
           end
 
           should 'call a visitor factory method during the visit' do
-            @v.expects(:children_test_visitor).once.returns(mock(:visit))
-            el('<dummy><childrenTest /></dummy>').accept(@v)
+            @v.expects(:son_visitor).once.returns(mock(:visit))
+            el('<dummy><son /></dummy>').accept(@v)
           end
         end
         
         context 'visiting an element with two children' do
           should 'visit the children' do
-            @v.expects(:visit_children_tests)
+            @v.expects(:visit_sons)
             assert el(<<XML).accept(@v)
 <dummy>
-  <childrenTest />
-  <childrenTest />
+  <son />
+  <son />
 </dummy>
 XML
           end
@@ -241,23 +245,65 @@ XML
           should 'provide an accessor method for children' do
             assert el(<<XML).accept(@v)
 <dummy>
-  <childrenTest />
-  <childrenTest />
+  <son />
+  <son />
 </dummy>
 XML
-            assert_kind_of Array, @v.children_tests
-            assert_equal 2, @v.children_tests.size
+            assert_kind_of Array, @v.sons
+            assert_equal 2, @v.sons.size
           end
 
           should 'call a visitor factory method during the visit' do
-            @v.expects(:children_test_visitor).twice.returns(stub(:visit))
+            @v.expects(:son_visitor).twice.returns(stub(:visit))
             assert el(<<XML).accept(@v)
 <dummy>
-  <childrenTest />
-  <childrenTest />
+  <son />
+  <son />
 </dummy>
 XML
           end
+        end
+      end
+
+      context 'visitor has one grandson' do
+        class VisitorHasOneGrandson
+          include VisitorPattern
+          include CustomError
+          include Children
+
+          has_one_and_only_one './imscp:son/imscp:grandson'
+        end
+
+        setup do
+          @v = VisitorHasOneGrandson.new
+        end
+
+        should 'raise exception if the grandson does not exist' do
+          assert_raise VisitorHasOneGrandson::Error do
+            el('<dummy><grandson /></dummy>').accept(@v)
+          end
+        end
+
+        should 'visit the grandson' do
+          el(<<-XML).accept(@v)
+            <dummy>
+              <son>
+                <grandson />
+              </son>
+            </dummy>
+          XML
+          assert_kind_of Grandson, @v.grandson
+        end
+
+        should 'call the grandson_visitor method during the visit' do
+          @v.expects(:grandson_visitor).once.returns(mock(:visit))
+          el(<<-XML).accept(@v)
+            <dummy>
+              <son>
+                <grandson />
+              </son>
+            </dummy>
+          XML
         end
       end
     end
