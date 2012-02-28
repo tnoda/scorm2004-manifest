@@ -7,6 +7,7 @@ require 'scorm2004/manifest/xml_base'
 require 'scorm2004/manifest/error'
 require 'scorm2004/manifest/manifest'
 require 'scorm2004/manifest/schema'
+require 'scorm2004/manifest/schemaversion'
 
 module Scorm2004
   module Manifest
