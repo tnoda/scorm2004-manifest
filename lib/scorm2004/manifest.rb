@@ -4,11 +4,11 @@ require 'scorm2004/manifest/custom_error'
 require 'scorm2004/manifest/attributes'
 require 'scorm2004/manifest/children'
 require 'scorm2004/manifest/xml_base'
+require 'scorm2004/manifest/error'
+require 'scorm2004/manifest/manifest'
 
 module Scorm2004
   module Manifest
-    class Error < StandardError; end
-
     NS = {
       'imscp'  => "http://www.imsglobal.org/xsd/imscp_v1p1",
       'adlcp'  => "http://www.adlnet.org/xsd/adlcp_v1p3",
@@ -18,3 +18,4 @@ module Scorm2004
     }
   end
 end
+

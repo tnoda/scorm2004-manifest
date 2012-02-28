@@ -46,7 +46,7 @@ module Scorm2004
         end
 
         def has_many(xpath, options = {})
-          name = guess_child_name(xpath, options)
+          name = guess_child_name(xpath, options).singularize
           children << name.pluralize.intern
           attr_reader name.pluralize.intern
           define_method("visit_#{name.pluralize}".intern) do
@@ -66,7 +66,7 @@ module Scorm2004
         end
 
         def guess_child_name(xpath, options)
-          xpath.split(%r{[/:]}).last.underscore.singularize
+          xpath.split(%r{[/:]}).last.underscore
         end
 
         def define_visitor(name)
