@@ -13,6 +13,12 @@ module Scorm2004
         @v.stubs(:organizations_visitor).returns(stub(:visit))
       end
 
+      context 'a manifest visitor' do
+        should 'be able to handle xml:base' do
+          assert @v.respond_to? :base
+        end
+      end
+
       context 'a manifest visitor visiting a valid manifest element' do
         should 'visit its offsprings and set attributes' do
           @v.expects(:schema_visitor).once.returns(mock(:visit))
@@ -20,7 +26,7 @@ module Scorm2004
           @v.expects(:resources_visitor).once.returns(mock(:visit))
           @v.expects(:organizations_visitor).once.returns(mock(:visit))
           el(<<-XML).accept(@v)
-            <dummy identifier="sample" version="1.0">
+            <dummy identifier="sample" version="1.0" xml:base="path/to/root/">
               <metadata>
                 <schema />
                 <schemaversion />
@@ -31,6 +37,7 @@ module Scorm2004
           XML
           assert_equal "sample", @v.identifier
           assert_equal "1.0",    @v.version
+          assert_equal Pathname('path/to/root'), @v.base
         end
       end
 
