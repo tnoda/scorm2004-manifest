@@ -5,6 +5,7 @@ require 'scorm2004/manifest/attributes'
 require 'scorm2004/manifest/children'
 require 'scorm2004/manifest/xml_base'
 require 'scorm2004/manifest/error'
+require 'scorm2004/manifest/manifest'
 
 module Scorm2004
   module Manifest
