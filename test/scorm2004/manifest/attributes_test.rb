@@ -212,6 +212,41 @@ module Scorm2004
           end
         end
       end
+
+      context 'visitor having a token attribute' do
+        class VisitorHavingTokenAttribute < Visitor
+          include CustomError
+
+          attribute :token, 'foo', vocabulary: %w( foo bar baz )
+        end
+        
+        setup do
+          @v = VisitorHavingTokenAttribute.new
+        end
+
+        context 'visiting an element without the attribute' do
+          should 'raise exception' do
+            assert_raise VisitorHavingTokenAttribute::Error do
+              el('<dummy />').accept(@v)
+            end
+          end
+        end
+
+        context 'visiting an element with a valid token attribute' do
+          should 'set the token as the value of the attribute' do
+            el('<dummy foo="bar" />').accept(@v)
+            assert_equal 'bar', @v.foo
+          end
+        end
+
+        context 'visiting an element with an invalid token attribute' do
+          should 'raise exception' do
+            assert_raise VisitorHavingTokenAttribute::Error do
+              el('<dummy foo="hoge" />').accept(@v)
+            end
+          end
+        end
+      end
     end
   end
 end
