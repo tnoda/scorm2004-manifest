@@ -70,6 +70,16 @@ module Scorm2004
           end
         end
 
+        def token_attribute(name, options)
+          base = basename(name)
+          define_method("check_#{base}".intern) do
+            raw = send("raw_#{base}".intern)
+            error("No #{name} attribute.") if raw.nil?
+            error("Invalid #{name}: #{raw}") unless options[:vocabulary].include?(raw)
+            instance_variable_set("@#{base}".intern, raw)
+          end
+        end
+
         private
 
         def basename(name)
