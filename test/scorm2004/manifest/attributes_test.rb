@@ -67,35 +67,6 @@ module Scorm2004
         end
       end
 
-      context 'visitor with a string attribute' do
-        class VisitorWithStringAttribute < Visitor
-          include CustomError
-
-          attribute(:string, 'foo', spm: 10)
-        end
-
-        setup do
-          @v = VisitorWithStringAttribute.new
-        end
-
-        should 'set a string value as the attribute' do
-          el('<dummy foo="bar baz" />').accept(@v)
-          assert_equal 'bar baz', @v.foo
-        end
-
-        should 'raise exception if the attribute not found' do
-          assert_raise VisitorWithStringAttribute::Error do
-            el('<dummy />').accept(@v)
-          end
-        end
-
-        should 'raise exception if the length of string exceeds the SPM' do
-          assert_raise VisitorWithStringAttribute::Error do
-            el('<dummy foo="0123456789ABCDEF" />').accept(@v)
-          end
-        end
-      end
-
       context 'visitor with an id attribute' do
         class VisitorWithIdAttribute < Visitor
           include CustomError
