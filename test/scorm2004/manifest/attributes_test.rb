@@ -247,6 +247,33 @@ module Scorm2004
           end
         end
       end
+
+      context 'visitor having an idref attribute' do
+        class VisitorHavingIdrefAttribute < Visitor
+          include CustomError
+
+          attribute :idref, 'foo'
+        end
+
+        setup do
+          @v = VisitorHavingIdrefAttribute.new
+        end
+
+        context 'visitng an element with an idref attribute' do
+          should 'set the idref value ast its attribute' do
+            el('<dummy foo="bar" />').accept(@v)
+            assert_equal 'bar', @v.foo
+          end
+        end
+
+        context 'visiting an element without an idref attribute' do
+          should 'raise exception' do
+            assert_raise VisitorHavingIdrefAttribute::Error do
+              el('<dummy />').accept(@v)
+            end
+          end
+        end
+      end
     end
   end
 end

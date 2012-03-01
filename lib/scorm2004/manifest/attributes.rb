@@ -57,6 +57,7 @@ module Scorm2004
             instance_variable_set("@#{base}".intern, raw)
           end
         end
+        alias :idref_attribute :id_attribute
 
         def decimal_attribute(name, options)
           base = basename(name)
