@@ -16,6 +16,7 @@ require 'scorm2004/manifest/dependency'
 require 'scorm2004/manifest/organizations'
 require 'scorm2004/manifest/organization'
 require 'scorm2004/manifest/title'
+require 'scorm2004/manifest/completion_threshold'
 
 module Scorm2004
   module Manifest
