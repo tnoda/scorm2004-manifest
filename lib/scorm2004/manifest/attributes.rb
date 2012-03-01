@@ -40,7 +40,7 @@ module Scorm2004
           base = basename(name)
           define_method("check_#{base}".intern) do
             raw = send("raw_#{base}")
-            error("No #{name} attribute.") if raw.nil?
+            error("No #{name} attribute.") unless options[:allow_nil] || raw
             if options[:spm] && raw.length > options[:spm]
               error("The length of #{name} exceeds the SPM of #{options[:spm]} characters.")
             end
