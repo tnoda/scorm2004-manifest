@@ -11,6 +11,7 @@ require 'scorm2004/manifest/schemaversion'
 require 'scorm2004/manifest/resources'
 require 'scorm2004/manifest/href'
 require 'scorm2004/manifest/resource'
+require 'scorm2004/manifest/file'
 
 module Scorm2004
   module Manifest
