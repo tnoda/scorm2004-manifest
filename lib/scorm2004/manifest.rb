@@ -19,6 +19,7 @@ require 'scorm2004/manifest/title'
 require 'scorm2004/manifest/completion_threshold'
 require 'scorm2004/manifest/item'
 require 'scorm2004/manifest/time_limit_action'
+require 'scorm2004/manifest/data_from_lms'
 
 module Scorm2004
   module Manifest
