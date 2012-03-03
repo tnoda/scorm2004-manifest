@@ -3,11 +3,7 @@ module Scorm2004
     class Title
       include VisitorPattern
       include CustomError
-      
-      def content
-        el.content
-      end
-      alias :to_s :content
+      include TextNode
 
       private
       

@@ -3,6 +3,7 @@ module Scorm2004
     class TimeLimitAction
       include VisitorPattern
       include CustomError
+      include TextNode
       
       def self.vocabulary
         [ 'exit, message',
@@ -10,11 +11,6 @@ module Scorm2004
           'continue, message',
           'continue,no message' ]
       end
-
-      def content
-        el.content
-      end
-      alias :to_s :content
 
       private
       
