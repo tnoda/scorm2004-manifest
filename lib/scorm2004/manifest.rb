@@ -23,6 +23,7 @@ require 'scorm2004/manifest/time_limit_action'
 require 'scorm2004/manifest/data_from_lms'
 require 'scorm2004/manifest/presentation'
 require 'scorm2004/manifest/navigation_interface'
+require 'scorm2004/manifest/hide_lmsui'
 
 module Scorm2004
   module Manifest
