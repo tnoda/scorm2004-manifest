@@ -88,6 +88,20 @@ module Scorm2004
           end
         end
 
+        def any_uri_attribute(name, option)
+          base = basename(name)
+          define_method("check_#{base}".intern) do
+            raw = send("raw_#{base}".intern)
+            error("No #{name} attribute.") if raw.nil?
+            begin
+              uri = URI(raw)
+            rescue URI::InvalidURIError => e
+              error(e)
+            end
+            instance_variable_set("@#{base}".intern, uri.to_s)
+          end
+        end
+
         private
 
         def basename(name)
