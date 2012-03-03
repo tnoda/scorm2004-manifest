@@ -3,15 +3,11 @@ module Scorm2004
     class DataFromLms
       include VisitorPattern
       include CustomError
-      
+      include TextNode
+
       def self.spm
         4000
       end
-
-      def content
-        el.content
-      end
-      alias :to_s :content
 
       private
       
