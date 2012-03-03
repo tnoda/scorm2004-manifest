@@ -5,6 +5,12 @@ module Scorm2004
         base.extend(ClassMethods)
       end
 
+      private
+      
+      def replace_and_collapse_whitespaces(string)
+        string.gsub(/\s+/, ' ').gsub(/^ | $/, '')
+      end
+
       def xs_id?(str)
         (/\s|^\d+$/ =~ str).nil?
       end
@@ -76,6 +82,7 @@ module Scorm2004
           define_method("check_#{base}".intern) do
             raw = send("raw_#{base}".intern)
             error("No #{name} attribute.") if raw.nil?
+            raw = replace_and_collapse_whitespaces(raw)
             error("Invalid #{name}: #{raw}") unless options[:vocabulary].include?(raw)
             instance_variable_set("@#{base}".intern, raw)
           end
