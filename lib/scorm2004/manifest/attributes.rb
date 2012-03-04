@@ -69,6 +69,7 @@ module Scorm2004
           base = basename(name)
           define_method("check_#{base}".intern) do
             raw = send("raw_#{base}".intern)
+            return if options[:allow_nil] && raw.nil?
             error("No #{name} attribute.") if raw.nil?
             if options[:range] && !options[:range].include?(Float(raw))
               error("The decimal attribute, #{name}, out of range (#{options[:range]}): #{raw}")
