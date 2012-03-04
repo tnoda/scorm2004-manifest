@@ -31,6 +31,7 @@ require 'scorm2004/manifest/sequencing'
 require 'scorm2004/manifest/control_mode'
 require 'scorm2004/manifest/sequencing_rules'
 require 'scorm2004/manifest/condition_rule'
+require 'scorm2004/manifest/rule_conditions'
 
 module Scorm2004
   module Manifest
