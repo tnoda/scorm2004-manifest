@@ -9,8 +9,20 @@ module Scorm2004
 
       attribute :token,   'operator',            vocabulary: %w( not noOp ), default: 'noOp'
       attribute :string,  'referencedObjective', allow_nil: true
-      attribute :decimal, 'measureThreshold',   range: -1.0..1.0, allow_nil: true
+      attribute :decimal, 'measureThreshold',    range: -1.0..1.0, allow_nil: true
       attribute :token,   'condition',           vocabulary: VOCABULARY
+
+      private
+
+      def do_visit
+        return unless referenced_objective
+        if '' == referenced_objective
+          error('The referencedObjective attribute cannot be an empty string.')
+        end
+        if /\s/ =~ referenced_objective
+          error('The referencedObjective attribute cannot contain any whitespace characters.')
+        end
+      end
     end
   end
 end

@@ -48,6 +48,20 @@ module Scorm2004
         end
       end
 
+      test 'The referencedObjective attribute cannot be an empty string' do
+        assert_error do
+          el('<dummy referencedObjective="" condition="always" />').accept(@v)
+        end
+      end
+
+      [" ", "\t", "\n", "\r" ].each do |whitespace|
+        test "The referencedObjective cannot contain #{whitespace.dump}" do
+          assert_error do
+            el("<dummy referencedObjective='foo#{whitespace}bar' condition='always' />").accept(@v)
+          end
+        end
+      end
+
       def assert_error(&block)
         assert_raise RuleCondition::Error, &block
       end
