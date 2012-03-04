@@ -29,6 +29,7 @@ require 'scorm2004/manifest/map.rb'
 require 'scorm2004/manifest/sequencing_collection'
 require 'scorm2004/manifest/sequencing'
 require 'scorm2004/manifest/control_mode'
+require 'scorm2004/manifest/sequencing_rules'
 
 module Scorm2004
   module Manifest
