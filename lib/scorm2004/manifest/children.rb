@@ -66,7 +66,7 @@ module Scorm2004
         end
 
         def guess_child_name(xpath, options)
-          xpath.split(%r{[/:]}).last.underscore
+          options[:visitor].try(:to_s) || xpath.split(%r{[/:]}).last.underscore
         end
 
         def define_visitor(name)

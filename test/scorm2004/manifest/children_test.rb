@@ -306,6 +306,25 @@ XML
           XML
         end
       end
+
+      context 'a visitor with the visitor option' do
+        class NamespacedVisitor
+          include VisitorPattern
+          include CustomError
+          include Children
+
+          has_one_and_only_one 'imscp:foo', visitor: :foo_bar
+        end
+        
+        setup do
+          @v = NamespacedVisitor.new
+          @v.expects(:foo_bar_visitor).once.returns(mock(:visit))
+        end
+
+        should 'visits a child element using the visitor' do
+          el('<dummy><foo /></dummy>').accept(@v)
+        end
+      end
     end
   end
 end
