@@ -58,7 +58,7 @@ module Scorm2004
           base = basename(name)
           define_method("check_#{base}".intern) do
             raw = send("raw_#{base}")
-            error("No #{name} attribute.") if raw.nil?
+            error("No #{name} attribute.") unless options[:allow_nil] || raw
             error("Non xs:ID value for the #{name} attribute: #{raw}") unless xs_id?(raw)
             instance_variable_set("@#{base}".intern, raw)
           end
