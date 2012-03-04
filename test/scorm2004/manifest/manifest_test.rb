@@ -11,6 +11,7 @@ module Scorm2004
         @v.stubs(:schemaversion_visitor).returns(stub(:visit))
         @v.stubs(:resources_visitor).returns(stub(:visit))
         @v.stubs(:organizations_visitor).returns(stub(:visit))
+        @v.stubs(:sequencing_collection_visitor).returns(stub(:visit))
       end
 
       context 'a manifest visitor' do
@@ -25,6 +26,7 @@ module Scorm2004
           @v.expects(:schemaversion_visitor).once.returns(mock(:visit))
           @v.expects(:resources_visitor).once.returns(mock(:visit))
           @v.expects(:organizations_visitor).once.returns(mock(:visit))
+          @v.expects(:sequencing_collection_visitor).once.returns(mock(:visit))
           el(<<-XML).accept(@v)
             <dummy identifier="sample" version="1.0" xml:base="path/to/root/">
               <metadata>
@@ -33,6 +35,7 @@ module Scorm2004
               </metadata>
               <resources />
               <organizations />
+              <imsss:sequencingCollection />
             </dummy>
           XML
           assert_equal "sample", @v.identifier

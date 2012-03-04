@@ -11,6 +11,7 @@ module Scorm2004
       has_one_and_only_one './imscp:metadata/imscp:schemaversion'
       has_one_and_only_one 'imscp:resources'
       has_one_and_only_one 'imscp:organizations'
+      has_zero_or_one      'imsss:sequencingCollection'
 
       attribute :id,     'identifier'
       attribute :string, 'version', spm: 20
