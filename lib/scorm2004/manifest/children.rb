@@ -31,8 +31,8 @@ module Scorm2004
           children << name.intern
           attr_reader name.intern
           define_method("visit_#{name}".intern) do
-            error("Two <#{name.camelize}> elements found.") if search(xpath).size > 1
-            error("<#{name.camelize}> not found.") unless options[:allow_nil] || at(xpath)
+            error("Two <#{xpath}> elements found.") if search(xpath).size > 1
+            error("<#{xpath}> not found.") unless options[:allow_nil] || at(xpath)
             if at(xpath)
               instance_variable_set("@#{name}".intern, at(xpath).accept(create_visitor(name)))
             end
@@ -51,7 +51,7 @@ module Scorm2004
           attr_reader name.pluralize.intern
           define_method("visit_#{name.pluralize}".intern) do
             unless options[:allow_nil] || search(xpath).size > 0
-              error("<#{name.camelize}> not found.")
+              error("<#{xpath}> not found.")
             end
             instance_variable_set("@#{name.pluralize}".intern, search(xpath).map { |child|
                 child.accept(create_visitor(name))
