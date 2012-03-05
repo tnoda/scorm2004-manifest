@@ -15,9 +15,13 @@ module Scorm2004
         (/\s|^\d+$/ =~ str).nil?
       end
 
-        def xs_non_negative_integer?(string)
-          /^\+?\d+$/ =~ string
-        end
+      def xs_non_negative_integer?(string)
+        /^\+?\d+$/ =~ string
+      end
+
+      def xs_duration?(string)
+        /^(\+|-)?P(((\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+(\.\d+)?S)?)?)|(\d+W))$/ =~ string
+      end
       
       module ClassMethods
         def attributes
@@ -88,8 +92,21 @@ module Scorm2004
             raw = send("raw_#{base}".intern)
             return if options[:allow_nil] && raw.nil?
             error("No #{name} attribute.") if raw.nil?
-            error("Non xs:nonNegativeInteger value for #{name}") unless xs_non_negative_integer?(raw)
+            unless xs_non_negative_integer?(raw)
+              error("Non xs:nonNegativeInteger value for #{name}: #{raw}")
+            end
             instance_variable_set("@#{base}".intern, Integer(raw, 10))
+          end
+        end
+
+        def duration_attribute(name, options)
+          base = basename(name)
+          define_method("check_#{base}".intern) do
+            raw = send("raw_#{base}".intern)
+            return if options[:allow_nil] && raw.nil?
+            error("No #{name} attribute.") if raw.nil?
+            error("Non xs:duration value for #{name}: #{raw}") unless xs_duration?(raw)
+            instance_variable_set("@#{base}".intern, raw)
           end
         end
 
