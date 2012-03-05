@@ -5,9 +5,9 @@ module Scorm2004
       include CustomError
       include Attributes
 
-      VOCABULARY = %w( satisfied notSatisfied completed incomplete )
+      ACTIONS = %w( satisfied notSatisfied completed incomplete )
 
-      attribute :token, 'action', vocabulary: VOCABULARY
+      attribute :token, 'action', vocabulary: ACTIONS
     end
   end
 end

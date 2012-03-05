@@ -18,7 +18,7 @@ module Scorm2004
         assert_equal 'noOp', @v.operator
       end
 
-      RollupCondition::VOCABULARY.each do |condition|
+      RollupCondition::CONDITIONS.each do |condition|
         tag = "<dummy condition='#{condition}' />"
         test tag do
           el(tag).accept(@v)

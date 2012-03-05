@@ -35,7 +35,7 @@ module Scorm2004
         end
       end
 
-      Scorm2004::Manifest::RuleCondition::VOCABULARY.each do |token|
+      Scorm2004::Manifest::RuleCondition::CONDITIONS.each do |token|
         test "valid condition token: #{token}" do
           el("<dummy condition='#{token}' />").accept(@v)
           assert_equal token, @v.condition

@@ -5,7 +5,7 @@ module Scorm2004
       include CustomError
       include Attributes
 
-      VOCABULARY = [
+      CONDITIONS = [
         'satisfied',
         'objectiveStatusKnown',
         'objectiveMeasureKnown',
@@ -18,7 +18,7 @@ module Scorm2004
       ]
 
       attribute :token, 'operator', vocabulary: %w( not noOp ), default: 'noOp'
-      attribute :token, 'condition', vocabulary: VOCABULARY
+      attribute :token, 'condition', vocabulary: CONDITIONS
     end
   end
 end

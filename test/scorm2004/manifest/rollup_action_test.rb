@@ -13,7 +13,7 @@ module Scorm2004
         assert_error { el.accept(@v) }
       end
 
-      RollupAction::VOCABULARY.each do |action|
+      RollupAction::ACTIONS.each do |action|
         tag = "<dummy action='#{action}' />"
         test tag do
           el(tag).accept(@v)
