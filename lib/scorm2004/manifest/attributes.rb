@@ -15,9 +15,9 @@ module Scorm2004
         (/\s|^\d+$/ =~ str).nil?
       end
 
-        def xs_non_negative_integer?(string)
-          /^\+?\d+$/ =~ string
-        end
+      def xs_non_negative_integer?(string)
+        /^\+?\d+$/ =~ string
+      end
       
       module ClassMethods
         def attributes
