@@ -34,6 +34,7 @@ require 'scorm2004/manifest/condition_rule'
 require 'scorm2004/manifest/rule_conditions'
 require 'scorm2004/manifest/rule_action'
 require 'scorm2004/manifest/rule_condition'
+require 'scorm2004/manifest/limit_conditions'
 
 module Scorm2004
   module Manifest
