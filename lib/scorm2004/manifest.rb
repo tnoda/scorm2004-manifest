@@ -39,6 +39,7 @@ require 'scorm2004/manifest/rollup_rules'
 require 'scorm2004/manifest/rollup_conditions'
 require 'scorm2004/manifest/rollup_condition'
 require 'scorm2004/manifest/rollup_action'
+require 'scorm2004/manifest/objectives'
 
 module Scorm2004
   module Manifest
