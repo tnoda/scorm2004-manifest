@@ -1,7 +1,7 @@
 require 'nokogiri'
 
 module PartialManifest
-  def el(fragment)
+  def el(fragment = '<dummy />')
     Nokogiri::XML(<<XML).root.at('./*', Scorm2004::Manifest::NS)
 <?xml version = "1.0" standalone = "no"?>
 <manifest identifier = "minimal_manifest" version = "1.0"
