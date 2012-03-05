@@ -88,7 +88,9 @@ module Scorm2004
             raw = send("raw_#{base}".intern)
             return if options[:allow_nil] && raw.nil?
             error("No #{name} attribute.") if raw.nil?
-            error("Non xs:nonNegativeInteger value for #{name}") unless xs_non_negative_integer?(raw)
+            unless xs_non_negative_integer?(raw)
+              error("Non xs:nonNegativeInteger value for #{name}: #{raw}")
+            end
             instance_variable_set("@#{base}".intern, Integer(raw, 10))
           end
         end
