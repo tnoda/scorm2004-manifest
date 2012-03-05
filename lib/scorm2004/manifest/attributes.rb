@@ -121,10 +121,11 @@ module Scorm2004
           end
         end
 
-        def any_uri_attribute(name, option)
+        def any_uri_attribute(name, options)
           base = basename(name)
           define_method("check_#{base}".intern) do
             raw = send("raw_#{base}".intern)
+            return if options[:allow_nil] && raw.nil?
             error("No #{name} attribute.") if raw.nil?
             begin
               uri = URI(raw)
