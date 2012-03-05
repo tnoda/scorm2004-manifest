@@ -30,6 +30,14 @@ module Scorm2004
           assert_nil @el
         end
       end
+
+      context 'default partial manifest' do
+        should 'return an empty element' do
+          el = DummyVisitor.new.el
+          assert_kind_of Nokogiri::XML::Node, el
+          assert_equal 'dummy', el.name
+        end
+      end
     end
   end
 end

@@ -35,6 +35,10 @@ require 'scorm2004/manifest/rule_conditions'
 require 'scorm2004/manifest/rule_action'
 require 'scorm2004/manifest/rule_condition'
 require 'scorm2004/manifest/limit_conditions'
+require 'scorm2004/manifest/rollup_rules'
+require 'scorm2004/manifest/rollup_conditions'
+require 'scorm2004/manifest/rollup_condition'
+require 'scorm2004/manifest/rollup_action'
 
 module Scorm2004
   module Manifest
