@@ -43,6 +43,7 @@ require 'scorm2004/manifest/objectives'
 require 'scorm2004/manifest/primary_objective'
 require 'scorm2004/manifest/min_normalized_measure'
 require 'scorm2004/manifest/map_info'
+require 'scorm2004/manifest/objective'
 
 module Scorm2004
   module Manifest
