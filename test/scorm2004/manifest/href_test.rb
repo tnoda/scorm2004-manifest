@@ -20,7 +20,7 @@ module Scorm2004
         context 'visiting an element with xml:base and href' do
           should 'calculate the resolved href properly' do
             el('<dummy xml:base="../../d/e/f/" href="x/y/z.html').accept(@v)
-            assert_equal Pathname('a/d/e/f/x/y/z.html'), @v.href
+            assert_equal 'a/d/e/f/x/y/z.html', @v.href
           end
         end
 
@@ -34,7 +34,7 @@ module Scorm2004
         context 'visiting an element with href' do
           should 'calculate the resolved href properly' do
             el('<dummy href="../../x/y/z.html" />').accept(@v)
-            assert_equal Pathname('a/x/y/z.html'), @v.href
+            assert_equal 'a/x/y/z.html', @v.href
           end
         end
       end

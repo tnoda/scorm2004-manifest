@@ -13,7 +13,7 @@ module Scorm2004
         context 'visiting a file element' do
           should 'set an href value as its attribute' do
             el('<file href="path/to/file" />').accept(@v)
-            assert_equal Pathname('path/to/file'), @v.href
+            assert_equal 'path/to/file', @v.href
           end
         end
 
@@ -31,7 +31,7 @@ module Scorm2004
           should 'set a resolved href value as its attribute' do
             @v = Scorm2004::Manifest::File.new(base: Pathname('path/to/base'))
             el('<file href="path/to/file" />').accept(@v)
-            assert_equal Pathname('path/to/base/path/to/file'), @v.href
+            assert_equal 'path/to/base/path/to/file', @v.href
           end
         end
       end

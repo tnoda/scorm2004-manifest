@@ -19,9 +19,9 @@ module Scorm2004
         context 'visiting a valid element' do
           should 'set its attribute properly' do
             el(VALID_RESOURCE_ELEMENT).accept(@v)
-            assert_equal 'a12',                                      @v.identifier
-            assert_equal Pathname('path/to/base/path/to/file.html'), @v.href
-            assert_equal 'sco',                                      @v.scorm_type
+            assert_equal 'a12',                            @v.identifier
+            assert_equal 'path/to/base/path/to/file.html', @v.href
+            assert_equal 'sco',                            @v.scorm_type
           end
         end
 
