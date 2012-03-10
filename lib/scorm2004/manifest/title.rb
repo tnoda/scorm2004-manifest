@@ -9,7 +9,7 @@ module Scorm2004
       
       def do_visit
         error('Empty <title> element.') unless content.present?
-        error('The <title> element exceeds the SPM of 200 characters: ' + el.to_s) if content.length > 200
+        error('The <title> element exceeds the SPM of 200 characters:') if content.length > 200
       end
     end
   end

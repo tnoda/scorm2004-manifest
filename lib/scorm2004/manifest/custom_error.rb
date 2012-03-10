@@ -8,9 +8,8 @@ module Scorm2004
       end
       
       def error(message)
-        raise("#{self.class}::Error".constantize, message)
+        raise("#{self.class}::Error".constantize, [message, el.try(:to_s)].compact.join("\n"))
       end
     end
   end
 end
-

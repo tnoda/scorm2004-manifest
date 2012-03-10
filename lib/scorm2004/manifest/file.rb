@@ -9,7 +9,7 @@ module Scorm2004
       private
       
       def do_visit
-        error('href attribute not found: ' + el.to_s) unless href
+        error('href attribute not found:') unless href
       end
     end
   end

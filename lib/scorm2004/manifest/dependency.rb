@@ -10,7 +10,7 @@ module Scorm2004
       private
       
       def do_visit
-        error('Referenced <resource> not found: ' + el.to_s) unless referenced_resource
+        error('Referenced <resource> not found:') unless referenced_resource
       end
 
       def referenced_resource

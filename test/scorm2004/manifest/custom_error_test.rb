@@ -5,6 +5,7 @@ module Scorm2004
     class CustomErrorTest < ActiveSupport::TestCase
       context 'Visitor including the CustomError module' do
         class Visitor
+          include VisitorPattern
           include CustomError
         end
 

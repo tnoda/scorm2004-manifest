@@ -24,7 +24,7 @@ module Scorm2004
       
       def do_visit
         if identifierref && resource.nil?
-          error("A <resource> element whose identifier is #{identifierref} not found: " + el.to_s)
+          error("A <resource> element whose identifier is #{identifierref} not found:")
         end
       end
 
