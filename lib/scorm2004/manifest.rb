@@ -50,6 +50,7 @@ require 'scorm2004/manifest/constrained_choice_considerations'
 require 'scorm2004/manifest/rollup_considerations'
 require 'scorm2004/manifest/adlseq_objectives'
 require 'scorm2004/manifest/adlseq_objective'
+require 'scorm2004/manifest/adlseq_map_info'
 
 module Scorm2004
   module Manifest
