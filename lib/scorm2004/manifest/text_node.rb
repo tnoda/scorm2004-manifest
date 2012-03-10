@@ -5,6 +5,7 @@ module Scorm2004
         el.content
       end
       alias :to_s :content
+      alias :to_str :content
     end
   end
 end
