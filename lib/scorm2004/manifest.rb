@@ -49,6 +49,7 @@ require 'scorm2004/manifest/delivery_controls'
 require 'scorm2004/manifest/constrained_choice_considerations'
 require 'scorm2004/manifest/rollup_considerations'
 require 'scorm2004/manifest/adlseq_objectives'
+require 'scorm2004/manifest/adlseq_objective'
 
 module Scorm2004
   module Manifest
