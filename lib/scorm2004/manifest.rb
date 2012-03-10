@@ -47,6 +47,7 @@ require 'scorm2004/manifest/objective'
 require 'scorm2004/manifest/randomization_controls'
 require 'scorm2004/manifest/delivery_controls'
 require 'scorm2004/manifest/constrained_choice_considerations'
+require 'scorm2004/manifest/rollup_considerations'
 
 module Scorm2004
   module Manifest
