@@ -12,7 +12,7 @@ module Scorm2004
       attribute :string,  'parameters',    allow_nil: true
 
       has_one_and_only_one 'imscp:title'
-      has_one_or_more      'imscp:item'
+      has_zero_or_more     'imscp:item'
       has_zero_or_one      'adlcp:timeLimitAction'
       has_zero_or_one      'adlcp:dataFromLMS'
       has_zero_or_one      'adlcp:completionThreshold'
