@@ -2,7 +2,7 @@ module Scorm2004
   module Manifest
     module Href
       def href
-        base ? resolve_href : relative_href
+        (base ? resolve_href : relative_href).try(:to_s)
       end
 
       private
