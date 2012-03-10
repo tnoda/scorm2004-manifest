@@ -45,6 +45,7 @@ require 'scorm2004/manifest/min_normalized_measure'
 require 'scorm2004/manifest/map_info'
 require 'scorm2004/manifest/objective'
 require 'scorm2004/manifest/randomization_controls'
+require 'scorm2004/manifest/delivery_controls'
 
 module Scorm2004
   module Manifest
