@@ -27,6 +27,10 @@ module Scorm2004
         should 'alias :to_s :content' do
           assert_equal @v.to_s, @v.content
         end
+
+        should 'alias :to_str :content'do
+          assert_equal @v.to_str, @v.content
+        end
       end
     end
   end
