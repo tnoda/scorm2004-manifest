@@ -5,10 +5,7 @@ require 'pathname'
 
 class MbceTest < ActiveSupport::TestCase
   test 'parsing imsmanifest.xml of ADL SCORM 2004 4th Edition MBCE' do
-    manifest = Scorm2004::Manifest::Manifest.new
-    File.open(xml) do |xml|
-      Nokogiri::XML(xml) { |config| config.strict.noent.noblanks }.root.accept manifest
-    end
+    manifest = Scorm2004::Manifest(xml)
 
     # <manifest>
     assert_equal 'LMSTestPackage_T-01b', manifest.identifier
@@ -67,7 +64,7 @@ class MbceTest < ActiveSupport::TestCase
   private
 
   def xml
-    File.exist?(path) ? path : download_manifest_file
+    open(File.exist?(path) ? path : download_manifest_file)
   end
 
   def path

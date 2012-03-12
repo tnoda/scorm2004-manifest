@@ -1,3 +1,4 @@
+require 'nokogiri'
 require 'active_support/core_ext'
 require 'scorm2004/manifest/visitor_pattern'
 require 'scorm2004/manifest/custom_error'
@@ -53,6 +54,10 @@ require 'scorm2004/manifest/adlseq_objective'
 require 'scorm2004/manifest/adlseq_map_info'
 
 module Scorm2004
+  def self.Manifest(*args)
+    Scorm2004::Manifest.parse(*args)
+  end
+
   module Manifest
     NS = {
       'imscp'  => "http://www.imsglobal.org/xsd/imscp_v1p1",
@@ -61,6 +66,12 @@ module Scorm2004
       'adlnav' => "http://www.adlnet.org/xsd/adlnav_v1p3",
       'imsss'  => "http://www.imsglobal.org/xsd/imsss"
     }
+
+    def self.parse(*args)
+      manifest_visitor = Scorm2004::Manifest::Manifest.new
+      Nokogiri::XML(*args) { |config| config.strict.noent }.root.accept manifest_visitor
+    end
   end
 end
+
 
