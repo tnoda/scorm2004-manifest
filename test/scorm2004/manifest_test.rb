@@ -15,5 +15,19 @@ module Scorm2004
         assert_kind_of Hash, Manifest::NS
       end
     end
+
+    context 'Manifest()' do
+      should 'call Manifest.parse' do
+        Scorm2004::Manifest.expects(:parse)
+        Scorm2004::Manifest :dummy
+      end
+    end
+
+    context 'Manifest.parse()' do
+      should 'let a manifest visitor visit a root element' do
+        Scorm2004::Manifest::Manifest.expects(:new).returns(mock(:visit))
+        Scorm2004::Manifest.parse('<dummy />')
+      end
+    end
   end
 end
