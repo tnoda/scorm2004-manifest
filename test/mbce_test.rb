@@ -1,9 +1,11 @@
 require_relative 'helper'
-require 'nokogiri'
-require 'open-uri'
-require 'pathname'
+require_relative 'functional_test'
 
 class MbceTest < ActiveSupport::TestCase
+  include FunctionalTest
+
+  gist 201036, 'mbce'
+
   test 'parsing imsmanifest.xml of ADL SCORM 2004 4th Edition MBCE' do
     manifest = Scorm2004::Manifest(xml)
 
@@ -59,31 +61,6 @@ class MbceTest < ActiveSupport::TestCase
     # <presentation>
     assert_equal 'continue', item_0.presentation.navigation_interface.hide_lmsuis[0].to_s
     assert_equal 'previous', item_0.presentation.navigation_interface.hide_lmsuis[1].to_s
-  end
-
-  private
-
-  def xml
-    open(File.exist?(path) ? path : download_manifest_file)
-  end
-
-  def path
-    create_tmpdir + 'mbce.xml'
-  end
-
-  def create_tmpdir
-    File.exist?(tmpdir) && File.directory?(tmpdir) ? tmpdir : Pathname(FileUtils.mkdir_p(tmpdir).first)
-  end
-
-  def tmpdir
-    Pathname('../tmp')
-  end
-
-  def download_manifest_file
-    File.open(path, 'wb') do |f|
-      f.write open('https://raw.github.com/gist/2010363/73c72a39f253572a201a4f7670e57252e70339c3/imsmanifest.xml', proxy: ENV['http_proxy']).read
-    end
-    path
   end
 end
 

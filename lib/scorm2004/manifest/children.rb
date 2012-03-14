@@ -27,17 +27,18 @@ module Scorm2004
         end
 
         def has_one(xpath, options = {})
-          name = guess_child_name(xpath, options)
+          name = options[:name].try(:to_s) || guess_child_name(xpath, options)
           children << name.intern
           attr_reader name.intern
+          visitor_name = options[:visitor].try(:to_s) || name
           define_method("visit_#{name}".intern) do
             error("Two <#{xpath}> elements found.") if search(xpath).size > 1
             error("<#{xpath}> not found.") unless options[:allow_nil] || at(xpath)
             if at(xpath)
-              instance_variable_set("@#{name}".intern, at(xpath).accept(create_visitor(name)))
+              instance_variable_set("@#{name}".intern, at(xpath).accept(create_visitor(visitor_name)))
             end
           end
-          define_visitor(name)
+          define_visitor(visitor_name)
         end
         alias :has_one_and_only_one :has_one
 
@@ -46,18 +47,19 @@ module Scorm2004
         end
 
         def has_many(xpath, options = {})
-          name = guess_child_name(xpath, options).singularize
+          name = options[:name].try(:to_s) || guess_child_name(xpath, options)
           children << name.pluralize.intern
           attr_reader name.pluralize.intern
+          visitor_name = options[:visitor].try(:to_s) || name
           define_method("visit_#{name.pluralize}".intern) do
             unless options[:allow_nil] || search(xpath).size > 0
               error("<#{xpath}> not found.")
             end
             instance_variable_set("@#{name.pluralize}".intern, search(xpath).map { |child|
-                child.accept(create_visitor(name))
+                child.accept(create_visitor(visitor_name))
               } )
           end
-          define_visitor(name)
+          define_visitor(visitor_name)
         end
         alias :has_one_or_more :has_many
 
@@ -66,7 +68,7 @@ module Scorm2004
         end
 
         def guess_child_name(xpath, options)
-          options[:visitor].try(:to_s) || xpath.split(%r{[/:]}).last.underscore
+          xpath.split(%r{[/:]}).last.underscore
         end
 
         def define_visitor(name)

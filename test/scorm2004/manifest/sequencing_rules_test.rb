@@ -25,6 +25,12 @@ module Scorm2004
           </dummy>
         XML
       end
+
+      %w( pre_condition_rules post_condition_rules exit_condition_rules ).each do |children|
+        test "a visitor responds to :#{children}" do
+          assert @v.respond_to? children.intern
+        end
+      end
     end
   end
 end
