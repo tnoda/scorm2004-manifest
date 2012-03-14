@@ -18,7 +18,7 @@ module Scorm2004
       has_zero_or_one 'imsss:deliveryControls'
       has_zero_or_one 'adlseq:constrainedChoiceConsiderations'
       has_zero_or_one 'adlseq:rollupConsiderations'
-      has_zero_or_one 'adlseq:objectives', visitor: :adlseq_objectives
+      has_zero_or_one 'adlseq:objectives', name: 'adlseq_objectives', visitor: :adlseq_objectives
     end
   end
 end
