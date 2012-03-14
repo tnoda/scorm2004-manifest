@@ -5,7 +5,20 @@ module Scorm2004
       include CustomError
       include Attributes
       
-      CONDITIONS = %w( objectiveMeasureKnown objectiveMeasureGreaterThan objectiveMeasureLessThan completed activityProgressKnown attempted attemptLimitExceeded timeLimitExceeded outsideAvailableTimeRange always )
+      CONDITIONS = [
+        'satisfied',
+        'objectiveStatusKnown',
+        'objectiveMeasureKnown',
+        'objectiveMeasureGreaterThan',
+        'objectiveMeasureLessThan',
+        'completed',
+        'activityProgressKnown',
+        'attempted',
+        'attemptLimitExceeded',
+        'timeLimitExceeded',
+        'outsideAvailableTimeRange',
+        'always'
+      ]
 
       attribute :token,   'operator',            vocabulary: %w( not noOp ), default: 'noOp'
       attribute :string,  'referencedObjective', allow_nil: true
