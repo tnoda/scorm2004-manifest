@@ -7,29 +7,17 @@ module Scorm2004
       
       setup do
         @v = RollupRules.new
-        [ :rollup_rule_visitor,
-          :rollup_conditions_visitor,
-          :rollup_action_visitor
-        ].each do |child_visitor|
-          @v.stubs(child_visitor).returns(stub(:visit))
-        end
-      end
-
-      test 'an empty element causes error' do
-        assert_error { el.accept(@v) }
+        @v.stubs(:rollup_rule_visitor).returns(stub(:visit))
       end
 
       test 'a visitor sets default values as its attribute' do
-        el('<dummy><imsss:rollupConditions /><imsss:rollupAction /></dummy>').accept(@v)
+        el.accept @v
         assert_equal true, @v.rollup_objective_satisfied
         assert_equal true, @v.rollup_progress_completion
         assert_equal 1.0,  @v.objective_measure_weight
       end
 
       test 'a fully-equipped element' do
-        [ :rollup_conditions_visitor, :rollup_action_visitor ].each do |singular_child|
-          @v.expects(singular_child).once.returns(mock(:visit))
-        end
         rollup_rule_visitor = mock()
         rollup_rule_visitor.expects(:visit).twice
         @v.expects(:rollup_rule_visitor).twice.returns(rollup_rule_visitor)
@@ -37,8 +25,6 @@ module Scorm2004
           <dummy>
             <imsss:rollupRule />
             <imsss:rollupRule />
-            <imsss:rollupConditions />
-            <imsss:rollupAction />
           </dummy>
         XML
       end
@@ -46,8 +32,7 @@ module Scorm2004
       [0.0, 0.5, 1.0].each do |valid_objective_measure_weight|
         tag = <<-XML
           <dummy objectiveMeasureWeight="#{valid_objective_measure_weight}">
-            <imsss:rollupConditions />
-            <imsss:rollupAction />
+            <imsss:rollupRule />
           </dummy>
         XML
         test tag do
@@ -59,8 +44,7 @@ module Scorm2004
       [-0.0001, 1.0001].each do |invalid_objective_measure_weight|
         tag = <<-XML
           <dummy objectiveMeasureWeight="#{invalid_objective_measure_weight}">
-            <imsss:rollupConditions />
-            <imsss:rollupAction />
+            <imsss:rollupRule />
           </dummy>
         XML
         test tag do
