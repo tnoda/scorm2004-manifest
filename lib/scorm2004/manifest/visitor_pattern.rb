@@ -15,6 +15,8 @@ module Scorm2004
         self
       end
 
+      private
+
       def check_attributes
         self.class.attributes.each do |attr|
           send("check_#{attr}".intern)
