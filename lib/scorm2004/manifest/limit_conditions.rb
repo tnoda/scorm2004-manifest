@@ -5,13 +5,8 @@ module Scorm2004
       include CustomError
       include Attributes
       
-      attribute :non_negative_integer, 'attemptLimit', allow_nil: true
-
-      private
-      
-      def do_visit
-        
-      end
+      attribute :non_negative_integer, 'attemptLimit',                 allow_nil: true
+      attribute :duration,             'attemptAbsoluteDurationLimit', allow_nil: true
     end
   end
 end
