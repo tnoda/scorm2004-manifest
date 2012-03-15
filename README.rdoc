@@ -1,10 +1,12 @@
 = scorm2004-manifest
 
-scorm2004-manifest is a manifest file parser/validator for SCORM 2004.
-It currently supports SCORM 2004 4th Edition Content Aggregation Model
-(CAM) Version 1.1.
+* https://github.com/tnoda/scorm2004-manifest
 
-== Installing
+== Description
+
++scorm2004-manifest+ is a Ruby gem that provides a manifest file parser for SCORM 2004 4th edition. It parses and validates the manifest file according to SCORM 2004 4th Edition Content Aggregation Model (CAM) Version 1.1. After parsing and validating, it builds an object tree that captures XML's hierarchical structure.
+
+== Installation
 
 To install scorm2004-manifest, use the following command:
 
@@ -16,55 +18,65 @@ To install scorm2004-manifest, use the following command:
 * nokogiri
 * activesupport
 
-== Usage
 
-=== Parsing Manifest File
+== Synopsis
 
-scorm2004-manifest is designed for use with Nokogiri's visitor pattern
-features. By a manifest visitor visiting a <manifest> element, it
-builds an object tree from a manifest file.
+  require 'scorm2004-manifest'
 
-    require 'nokogiri'
+  # Parse a manifest file
+  manifest = Scorm2004::Manifest(open('imsmanifest.xml'))
 
-    manifest_element = Nokogiri::XML(open('imsmanifest.xml')).root
-    manifest = manifest_element.accept(Scorm2004::Manifest::ManifestVisitor.new)
+  # Traverse an object tree
+  manifest.identifier        # => "LMSTestPackage_CM-01"
+  manifest.version           # => "1.1.1"
+  organizations = manifest.organizations
+  organization = organizations.organizations[0]
+  organization.identifier    # => "CM-01"
+  organization.title.content # => "LMS Test Content Package CM-01 "
+  item_0 = organization.items[0]
+  item_0.title.content       # => "Activity 1"
+  item_0.identifier          # => "activity_1"
+  item_0.identifierref       # => "SEQ01"
+  item_0.parameters          # => "?tc=CM-01&act=1"
+  item_0.sequencing.limit_conditions.attempt_absolute_duration_limit
+  # => "P5Y6M4DT12H30M58S"
+  item_0.presentation.navigation_interface.hide_lmsuis.map(&:content)
+  # => ["continue", "previous", "suspendAll"]
+  # ...
 
-=== Traversing Object Tree
+For every XML element in a manifest file, XML attributes and
+child elements defined in Content Aggregation Model can be
+accessed using accessor methods whose names are underscored.
+Namespace prefixes are omitted from the accessor methods,
+except for either +adlseq_objectives+, +adlseq_objective+,
+or +adlseq_map_info+.
+If an element may have multiple child elements,
+the accessor method for the child elements will be pluralized.
+For example, <organizations> element has one or more
+<organization> elements.
 
-Each object in the object tree contains its attributes and its child
-elements, which can be accessed as Ruby attributes. The following is
-an example when scorm2004-manifest parses the reference package,
-XXXXXXXX, provided by ADL:
+  # <organizations> can be accessed using the organizations
+  # method of the manifest object.
+  organizations = manifest.organizations
 
-    manifest.version #=>
-    manifest.identifier #=>
-    organizations = manifest.organizations
-    organizations.organizations.size #=>
-    organization = organizations.organizations[0]
-    organization.identifier #=>
-    organization.title #=>
-    organization.items.size #=>
-    item_0 = organization.items[0]
-    item_1 = organization.items[1]
-    item_0.identifier #=>
-    item_0.title #=>
-    # ....
+  # The <organization> collection of the <organizations>
+  # element can be accessed using the organizations method
+  # of the organizations object. To get the first
+  # <organization> of the <organizations>, use the
+  # following expression.
+  organization_0 = organizations.organizations[0]
 
-The XML attributes and the child elements of each element can be
-accessed as Ruby attributes whose names are underscored. Their
-namespace prefixes are removed from the Ruby attribute names except
-for +adl_objective+ . If an XML element has one or more child elements
-with the same name, their Ruby attribute name is pluralized.
 
-=== Generating Documentation
+== Documentation
 
-To generate scorm2004-manifest's documentation, use the following command:
+To generate scorm2004-manifest's document set, use the following command:
 
-   $ git clone git://github.com/tnoda/scorm2004-manifest.git
-   $ cd scorm2004-manifest
-   $ rake yard
+    $ git clone git://github.com/tnoda/scorm2004-manifest.git
+    $ cd scorm2004-manifest
+    $ rake yard
 
-The documentation will be generated under the +doc+ directoy.
+The document set will be generated under the +doc+ directory.
+
 
 == Contributing to scorm2004-manifest
 
@@ -76,7 +88,7 @@ The documentation will be generated under the +doc+ directoy.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
+
 == Copyright
 
 Copyright (c) 2012 Takahiro Noda. See LICENSE.txt for further details.
-
