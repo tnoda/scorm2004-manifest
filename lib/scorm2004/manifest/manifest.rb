@@ -15,12 +15,6 @@ module Scorm2004
 
       attribute :id,     'identifier'
       attribute :string, 'version', spm: 20
-
-      private
-      
-      def do_visit
-        
-      end
     end
   end
 end
