@@ -18,20 +18,20 @@ module Scorm2004
         end
 
         should 'have its own error method' do
-          assert @v.respond_to? :error
+          assert @v.respond_to?(:error, true)
         end
 
         context 'error method' do
           should 'raise its own exceptoin' do
             assert_raise "#{@v.class}::Error".constantize do
-              @v.error('dummy message')
+              @v.instance_eval { error('dummy message') }
             end
           end
 
           should 'set message' do
             begin
               message = 'something wrong'
-              @v.error(message)
+              @v.instance_eval { error(message) }
             rescue "#{@v.class}::Error".constantize => e
               assert_equal message, e.message
             end
