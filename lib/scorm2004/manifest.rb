@@ -74,5 +74,3 @@ module Scorm2004
     end
   end
 end
-
-
