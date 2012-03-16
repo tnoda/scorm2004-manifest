@@ -213,12 +213,3 @@ module Scorm2004
     end
   end
 end
-
-#  LocalWords:  AttributesTest PartialManifest VisitorPattern defaultsTrue el
-#  LocalWords:  VisitorHavingBinaryAttributesWithDefaultValues defaultsFalse
-#  LocalWords:  VisitorHavingBinaryAttributesWithoutDefaultValues CustomError
-#  LocalWords:  VisitorHavingNamespacedAttribute adlcp unnamespaced spm baz
-#  LocalWords:  VisitorWithStringAttribute VisitorWithIdAttribute whitespaces
-#  LocalWords:  VisitorHavingDecimalAttributeWithDefaultValue
-#  LocalWords:  VisitorHavingDecimalAttributeWithoutDefaultValue
-#  LocalWords:  VisitorHavingDecimalAttributeWithRange
