@@ -3,6 +3,12 @@ module Scorm2004
     module VisitorPattern
       attr_reader :el
 
+      def self.included(base)
+        base.class_eval do
+          const_set('Error', Class.new(Scorm2004::Manifest::Error))
+        end
+      end
+
       def initialize(options = {})
         @options = options
       end
@@ -16,6 +22,10 @@ module Scorm2004
       end
 
       private
+
+      def error(message)
+        raise("#{self.class}::Error".constantize, [message, el.try(:to_s)].compact.join("\n"))
+      end
 
       def check_attributes
         self.class.attributes.each do |attr|

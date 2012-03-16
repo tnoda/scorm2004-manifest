@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class Title
       include VisitorPattern
-      include CustomError
       include TextNode
 
       private

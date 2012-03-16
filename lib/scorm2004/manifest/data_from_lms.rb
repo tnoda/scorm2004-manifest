@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class DataFromLms
       include VisitorPattern
-      include CustomError
       include TextNode
 
       def self.spm

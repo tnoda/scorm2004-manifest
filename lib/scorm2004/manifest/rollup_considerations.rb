@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class RollupConsiderations
       include VisitorPattern
-      include CustomError
       include Attributes
       
       CONDITIONS = %w( always ifAttempted ifNotSkipped ifNotSuspended )

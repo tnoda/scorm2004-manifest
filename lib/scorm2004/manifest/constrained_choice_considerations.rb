@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class ConstrainedChoiceConsiderations
       include VisitorPattern
-      include CustomError
       include Attributes
 
       attribute :boolean, 'preventActivation', default: false

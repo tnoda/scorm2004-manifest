@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class Schema
       include VisitorPattern
-      include CustomError
       
       private
       

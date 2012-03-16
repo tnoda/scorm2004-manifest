@@ -8,7 +8,6 @@ module Scorm2004
       context 'visitor having a token attribute' do
         class VisitorHavingTokenAttribute
           include VisitorPattern
-          include CustomError
           include Attributes
 
           attribute :token, 'foo', vocabulary: ['foo', 'bar', 'foo bar']

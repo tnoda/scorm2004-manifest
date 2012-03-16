@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class RuleAction
       include VisitorPattern
-      include CustomError
       include Attributes
       
       PRE  = %w( skip disabled hiddenFromChoice stopForwardTraversal )

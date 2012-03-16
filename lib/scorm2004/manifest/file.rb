@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class File
       include VisitorPattern
-      include CustomError
       include XmlBase
       include Href
       

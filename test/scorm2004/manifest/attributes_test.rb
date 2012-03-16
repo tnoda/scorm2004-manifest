@@ -34,8 +34,9 @@ module Scorm2004
       end
 
       context 'visitor having binary attributes without default values' do
-        class VisitorHavingBinaryAttributesWithoutDefaultValues < Visitor
-          include CustomError
+        class VisitorHavingBinaryAttributesWithoutDefaultValues
+          include VisitorPattern
+          include Attributes
 
           attribute(:boolean, 'foo')
           attribute(:boolean, 'bar')
@@ -53,7 +54,10 @@ module Scorm2004
       end
 
       context 'visitor having a attribute with namespace prefix' do
-        class VisitorHavingNamespacedAttribute < Visitor
+        class VisitorHavingNamespacedAttribute
+          include VisitorPattern
+          include Attributes
+
           attribute(:boolean, 'adlcp:foo')
         end
 
@@ -68,8 +72,9 @@ module Scorm2004
       end
 
       context 'visitor with an id attribute' do
-        class VisitorWithIdAttribute < Visitor
-          include CustomError
+        class VisitorWithIdAttribute
+          include VisitorPattern
+          include Attributes
 
           attribute(:id, 'foo')
         end
@@ -115,8 +120,9 @@ module Scorm2004
       end
 
       context 'visitor having a decimal attribute without a default value' do
-        class VisitorHavingDecimalAttributeWithoutDefaultValue < Visitor
-          include CustomError
+        class VisitorHavingDecimalAttributeWithoutDefaultValue
+          include VisitorPattern
+          include Attributes
 
           attribute(:decimal, 'foo')
         end
@@ -158,8 +164,9 @@ module Scorm2004
       end
 
       context 'visitor having a decimal attribute with a range' do
-        class VisitorHavingDecimalAttributeWithRange < Visitor
-          include CustomError
+        class VisitorHavingDecimalAttributeWithRange
+          include VisitorPattern
+          include Attributes
 
           attribute(:decimal, 'foo', range: -1.0..1.0)
         end
@@ -185,8 +192,9 @@ module Scorm2004
       end
 
       context 'visitor having an idref attribute' do
-        class VisitorHavingIdrefAttribute < Visitor
-          include CustomError
+        class VisitorHavingIdrefAttribute
+          include VisitorPattern
+          include Attributes
 
           attribute :idref, 'foo'
         end

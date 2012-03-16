@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class RuleCondition
       include VisitorPattern
-      include CustomError
       include Attributes
       
       CONDITIONS = [

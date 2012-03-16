@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class MinNormalizedMeasure
       include VisitorPattern
-      include CustomError
       
       def to_f
         Float(el.content)

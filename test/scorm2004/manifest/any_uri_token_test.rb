@@ -7,7 +7,6 @@ module Scorm2004
       
       class Visitor
         include VisitorPattern
-        include CustomError
         include Attributes
 
         attribute :any_uri, 'foo'
