@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class SequencingRules
       include VisitorPattern
-      include CustomError
       include Children
 
       has_zero_or_more 'imsss:preConditionRule',  visitor: :condition_rule

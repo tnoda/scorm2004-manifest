@@ -8,7 +8,6 @@ module Scorm2004
       context 'a visitor for an element with a string attribute' do
         class SimpleVisitor
           include VisitorPattern
-          include CustomError
           include Attributes
 
           attribute :string, 'foo'
@@ -33,7 +32,6 @@ module Scorm2004
       context 'a visitor having SPM' do
         class SpmVisitor
           include VisitorPattern
-          include CustomError
           include Attributes
 
           attribute :string, 'foo', spm: 10
@@ -50,7 +48,6 @@ module Scorm2004
       context 'a visitor for an element with a string attribute optional' do
         class OptionalVisitor
           include VisitorPattern
-          include CustomError
           include Attributes
 
           attribute :string, 'foo', allow_nil: true

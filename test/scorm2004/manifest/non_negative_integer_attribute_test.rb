@@ -8,7 +8,6 @@ module Scorm2004
       context 'a visitor with xs:nonNegativeInteger attribute' do
         class Visitor
           include VisitorPattern
-          include CustomError
           include Attributes
 
           attribute :non_negative_integer, 'foo'
@@ -47,7 +46,6 @@ module Scorm2004
       context 'a visitor with xs:nonNegativeInteger attribute optional' do
         class VisitorWithOptionalAttribute
           include VisitorPattern
-          include CustomError
           include Attributes
 
           attribute :non_negative_integer, 'bar', allow_nil: true

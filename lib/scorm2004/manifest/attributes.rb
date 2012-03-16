@@ -38,6 +38,8 @@ module Scorm2004
           attr_reader base
         end
 
+        private
+
         def boolean_attribute(name, options)
           base = basename(name)
           define_method("check_#{base}".intern) do
@@ -135,8 +137,6 @@ module Scorm2004
             instance_variable_set("@#{base}".intern, uri.to_s)
           end
         end
-
-        private
 
         def basename(name)
           name.split(':').last.underscore.intern

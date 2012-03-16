@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class RandomizationControls
       include VisitorPattern
-      include CustomError
       include Attributes
 
       TIMINGS = %w( never once onEachNewAttempt )

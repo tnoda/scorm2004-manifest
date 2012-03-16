@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class RollupAction
       include VisitorPattern
-      include CustomError
       include Attributes
 
       ACTIONS = %w( satisfied notSatisfied completed incomplete )

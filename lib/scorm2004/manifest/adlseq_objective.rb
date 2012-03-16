@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class AdlseqObjective
       include VisitorPattern
-      include CustomError
       include Children
       include Attributes
 

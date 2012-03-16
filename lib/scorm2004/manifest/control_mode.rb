@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class ControlMode
       include VisitorPattern
-      include CustomError
       include Attributes
 
       attribute :boolean, 'choice',                         default: true

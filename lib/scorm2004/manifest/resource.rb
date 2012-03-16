@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class Resource
       include VisitorPattern
-      include CustomError
       include Children
       include Attributes
       include XmlBase

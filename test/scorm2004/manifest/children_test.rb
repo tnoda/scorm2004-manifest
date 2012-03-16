@@ -16,7 +16,6 @@ module Scorm2004
       context 'visitor that has one and only one child' do
         class VisitorHasOneAndOnlyOneChild
           include VisitorPattern
-          include CustomError
           include Children
 
           has_one_and_only_one('imscp:son')
@@ -69,7 +68,6 @@ XML
       context 'visitor that has zero or one child' do
         class VisitorHasZeroOrOneChild
           include VisitorPattern
-          include CustomError
           include Children
 
           has_zero_or_one('imscp:son')
@@ -122,7 +120,6 @@ XML
       context 'visitor that has one or more children' do
         class VisitorHasOneOrMoreChildren
           include VisitorPattern
-          include CustomError
           include Children
 
           has_one_or_more('imscp:son')
@@ -195,7 +192,6 @@ XML
       context 'visitor that has zero or more children' do
         class VisitorHasZeroOrMoreChildren
           include VisitorPattern
-          include CustomError
           include Children
 
           has_zero_or_more('imscp:son')
@@ -268,7 +264,6 @@ XML
       context 'visitor has one grandson' do
         class VisitorHasOneGrandson
           include VisitorPattern
-          include CustomError
           include Children
 
           has_one_and_only_one './imscp:son/imscp:grandson'
@@ -310,7 +305,6 @@ XML
       context 'a visitor with the visitor option' do
         class NamespacedVisitor
           include VisitorPattern
-          include CustomError
           include Children
 
           has_one_and_only_one 'imscp:foo', visitor: :foo_bar

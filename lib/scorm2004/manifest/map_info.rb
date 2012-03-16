@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class MapInfo
       include VisitorPattern
-      include CustomError
       include Attributes
       
       attribute :any_uri, 'targetObjectiveID'

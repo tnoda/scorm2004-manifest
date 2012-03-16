@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class Manifest
       include VisitorPattern
-      include CustomError
       include Children
       include Attributes
       include XmlBase
@@ -15,12 +14,6 @@ module Scorm2004
 
       attribute :id,     'identifier'
       attribute :string, 'version', spm: 20
-
-      private
-      
-      def do_visit
-        
-      end
     end
   end
 end

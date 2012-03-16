@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class AdlseqObjectives
       include VisitorPattern
-      include CustomError
       include Children
 
       has_one_or_more 'adlseq:objective', visitor: :adlseq_objective

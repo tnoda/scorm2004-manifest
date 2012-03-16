@@ -8,7 +8,6 @@ module Scorm2004
       context 'an visitor with a duration attribute' do
         class Visitor
           include VisitorPattern
-          include CustomError
           include Attributes
 
           attribute :duration, 'foo'

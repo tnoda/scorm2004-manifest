@@ -2,7 +2,6 @@ module Scorm2004
   module Manifest
     class Dependency
       include VisitorPattern
-      include CustomError
       include Attributes
       
       attribute :string, 'identifierref'

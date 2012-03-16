@@ -67,6 +67,8 @@ module Scorm2004
           has_many(xpath, options.merge( { :allow_nil => true} ))
         end
 
+        private
+
         def guess_child_name(xpath, options)
           xpath.split(%r{[/:]}).last.underscore
         end
