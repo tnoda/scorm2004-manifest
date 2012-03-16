@@ -1,6 +1,7 @@
 = scorm2004-manifest
 
 * https://github.com/tnoda/scorm2004-manifest
+* https://rubygems.org/gems/scorm2004-manifest
 
 == Description
 
