@@ -25,7 +25,13 @@ To install scorm2004-manifest, use the following command:
   require 'scorm2004-manifest'
 
   # Parse a manifest file
-  manifest = Scorm2004::Manifest(open('imsmanifest.xml'))
+  begin
+    manifest = Scorm2004::Manifest(open('imsmanifest.xml'))
+  rescue Scorm2004::Manifest::Error => e
+    # An exception will be raised if validation fails.
+    # The exception 'e' will be an instance of
+    # Scorm2004::Manifest::Error's subclass.
+  end
 
   # Traverse an object tree
   manifest.identifier        # => "LMSTestPackage_CM-01"
