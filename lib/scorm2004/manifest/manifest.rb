@@ -6,6 +6,8 @@ module Scorm2004
       include Attributes
       include XmlBase
       
+      VERSION_SPM = 20
+
       has_one_and_only_one './imscp:metadata/imscp:schema'
       has_one_and_only_one './imscp:metadata/imscp:schemaversion'
       has_one_and_only_one 'imscp:resources'
@@ -13,7 +15,7 @@ module Scorm2004
       has_zero_or_one      'imsss:sequencingCollection'
 
       attribute :id,     'identifier'
-      attribute :string, 'version', spm: 20
+      attribute :string, 'version', spm: VERSION_SPM
     end
   end
 end
