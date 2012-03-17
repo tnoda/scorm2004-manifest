@@ -16,7 +16,7 @@ module Scorm2004
       end
 
       def default_resource
-        el.at("/imscp:manifest/imscp:organizations/imscp:organization[@identifier='#{default}']", NS)
+        @el.at("/imscp:manifest/imscp:organizations/imscp:organization[@identifier='#{default}']", NS)
       end
     end
   end
