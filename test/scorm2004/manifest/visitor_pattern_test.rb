@@ -3,7 +3,7 @@ require_relative '../../helper'
 module Scorm2004
   module Manifest
     class VisitorPatternTest < ActiveSupport::TestCase
-      class DumbVisitor
+      class Visitor
         include VisitorPattern
       end
 
@@ -11,7 +11,7 @@ module Scorm2004
       
       context 'Visitor visiting a element' do
         setup do
-          @v = DumbVisitor.new
+          @v = Visitor.new
           el('<dummy />').accept(@v)
         end
 
@@ -47,7 +47,7 @@ module Scorm2004
 
       context 'Visitor with the attributes class method' do
         setup do
-          @v = DumbVisitor.new
+          @v = Visitor.new
           @v.class.stubs(:attributes)
         end
 
@@ -65,7 +65,7 @@ module Scorm2004
 
       context 'Visitor with the children class method' do
         setup do
-          @v = DumbVisitor.new
+          @v = Visitor.new
           @v.class.stubs(:children)
         end
 
