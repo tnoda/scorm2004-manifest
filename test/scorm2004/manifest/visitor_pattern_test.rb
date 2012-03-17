@@ -22,6 +22,17 @@ module Scorm2004
         should 'return self when visiting a element' do
           assert_equal @v, el('<dummy />').accept(@v)
         end
+
+        should 'not have metadata' do
+          assert_equal nil, @v.metadata
+        end
+      end
+
+      test 'metadata' do
+        visitor = Visitor.new
+        el('<a><metadata /></a>').accept visitor
+        assert_kind_of Nokogiri::XML::Node, visitor.metadata
+        assert_equal 'metadata', visitor.metadata.name
       end
 
       context 'Visitor with do_visit method' do

@@ -21,6 +21,11 @@ module Scorm2004
         self
       end
 
+      # @return [Nokogiri::XML::Node, nil] The <metadata> element or +nil+
+      def metadata
+        @el.at('./imscp:metadata', NS)
+      end
+
       private
 
       def error(message)
