@@ -16,6 +16,8 @@ module Scorm2004
         attribute :token, attr, vocabulary: CONDITIONS, default: CONDITIONS.first
       end
       
+      # @attribute [r] measure_satisfaction_if_active
+      # @return [Boolean] The +measureSatisfactionIfActive+ attribute of <rollupConsideration>
       attribute :boolean, 'measureSatisfactionIfActive', default: true
     end
   end

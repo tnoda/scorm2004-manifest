@@ -3,6 +3,7 @@ module Scorm2004
     class MinNormalizedMeasure
       include VisitorPattern
       
+      # @return [Float] The value of <minNormalizedMeasure>
       def to_f
         Float(el.content)
       end

@@ -8,7 +8,12 @@ module Scorm2004
       attribute :boolean, 'satisfiedByMeasure', default: false
       attribute :any_uri, 'objectiveID', allow_nil: true
 
+      # @attribute [r] min_normalized_measure
+      # @return [MinNormalizedMeasure, nil] <imsss:minNormalizedMeasure>
       has_zero_or_one 'imsss:minNormalizedMeasure'
+
+      # @attribute [r] map_infos
+      # @return [Array<MapInfo>] <imsss:mapInfo>
       has_zero_or_more 'imsss:mapInfo'
 
       private

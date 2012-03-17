@@ -4,6 +4,8 @@ module Scorm2004
       include VisitorPattern
       include Attributes
 
+      # @attribute [r] target_objective_id
+      # @return [String] The +targetObjectiveID+ attribute of <adlseq:mapInfo>
       attribute :any_uri, 'targetObjectiveID'
 
       elements = %w( RawScore MinScore MaxScore CompletionStatus ProgressMeasure )

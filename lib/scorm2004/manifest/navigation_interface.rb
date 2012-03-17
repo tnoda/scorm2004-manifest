@@ -4,6 +4,8 @@ module Scorm2004
       include VisitorPattern
       include Children
 
+      # @attribute [r] hide_lmsuis
+      # @return [Array<HideLmsui>] <adlnav:hideLMSUI>
       has_zero_or_more 'adlnav:hideLMSUI'
     end
   end

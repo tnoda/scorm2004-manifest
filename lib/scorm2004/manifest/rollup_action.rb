@@ -6,6 +6,8 @@ module Scorm2004
 
       ACTIONS = %w( satisfied notSatisfied completed incomplete )
 
+      # @attribute [r] action
+      # @return [String] The +action+ attribute of <rollupAction>
       attribute :token, 'action', vocabulary: ACTIONS
     end
   end

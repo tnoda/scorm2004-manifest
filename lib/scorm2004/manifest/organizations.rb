@@ -6,7 +6,12 @@ module Scorm2004
       include Attributes
       include XmlBase
       
+      # @attribute [r] default
+      # @return [String] The default attribute of <organizations>
       attribute :idref, 'default'
+
+      # @attribute [r] organizations
+      # @return [Array<Organization>] <organization>
       has_one_or_more 'imscp:organization'
 
       private
