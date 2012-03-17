@@ -3,15 +3,15 @@ require_relative '../../helper'
 module Scorm2004
   module Manifest
     class VisitorPatternTest < ActiveSupport::TestCase
-      class DumbVisitor
+      include PartialManifest
+
+      class Visitor
         include VisitorPattern
       end
-
-      include PartialManifest
       
       context 'Visitor visiting a element' do
         setup do
-          @v = DumbVisitor.new
+          @v = Visitor.new
           el('<dummy />').accept(@v)
         end
 
@@ -22,6 +22,17 @@ module Scorm2004
         should 'return self when visiting a element' do
           assert_equal @v, el('<dummy />').accept(@v)
         end
+
+        should 'not have metadata' do
+          assert_equal nil, @v.metadata
+        end
+      end
+
+      test 'metadata' do
+        visitor = Visitor.new
+        el('<a><metadata /></a>').accept visitor
+        assert_kind_of Nokogiri::XML::Node, visitor.metadata
+        assert_equal 'metadata', visitor.metadata.name
       end
 
       context 'Visitor with do_visit method' do
@@ -47,7 +58,7 @@ module Scorm2004
 
       context 'Visitor with the attributes class method' do
         setup do
-          @v = DumbVisitor.new
+          @v = Visitor.new
           @v.class.stubs(:attributes)
         end
 
@@ -65,7 +76,7 @@ module Scorm2004
 
       context 'Visitor with the children class method' do
         setup do
-          @v = DumbVisitor.new
+          @v = Visitor.new
           @v.class.stubs(:children)
         end
 
