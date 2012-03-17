@@ -11,7 +11,7 @@ module Scorm2004
       private
 
       def relative_base
-        value = el.at('./@xml:base', NS)
+        value = @el.at('./@xml:base', NS)
         return unless value
         error("Invalid XML Base value: #{value}") if %r!^/|[^/]$! =~ value
         uri = URI(value)

@@ -8,7 +8,7 @@ module Scorm2004
       private
 
       def relative_href
-        value = el.at('./@href', NS)
+        value = @el.at('./@href', NS)
         return unless value
         uri = URI(value)
         uri.absolute? ? uri : Pathname(uri.path)

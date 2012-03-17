@@ -9,12 +9,12 @@ module Scorm2004
 
       def at(xpath)
         xpath = './' + xpath unless /^\.\// =~ xpath
-        el.at(xpath, NS)
+        @el.at(xpath, NS)
       end
 
       def search(xpath)
         xpath = './' + xpath unless /^\.\// =~ xpath
-        el.search(xpath, NS)
+        @el.search(xpath, NS)
       end
 
       def create_visitor(name)

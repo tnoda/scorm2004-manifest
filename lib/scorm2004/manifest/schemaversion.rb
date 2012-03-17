@@ -6,11 +6,11 @@ module Scorm2004
       private
       
       def do_visit
-        error("Invalid schemaversion: #{el.content}") unless valid?
+        error('Invalid schemaversion') unless valid?
       end
 
       def valid?
-        '2004 4th Edition' == el.content
+        '2004 4th Edition' == @el.content
       end
     end
   end

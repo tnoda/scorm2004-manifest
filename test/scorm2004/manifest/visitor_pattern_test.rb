@@ -15,10 +15,6 @@ module Scorm2004
           el('<dummy />').accept(@v)
         end
 
-        should 'set a Nokogiri node as an attribute named el' do
-          assert_kind_of Nokogiri::XML::Node, @v.el
-        end
-
         should 'return self when visiting a element' do
           assert_equal @v, el('<dummy />').accept(@v)
         end

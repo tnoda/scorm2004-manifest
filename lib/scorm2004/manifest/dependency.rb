@@ -13,7 +13,7 @@ module Scorm2004
       end
 
       def referenced_resource
-        el.at("/imscp:manifest/imscp:resources/imscp:resource[@identifier='#{identifierref}']", NS)
+        @el.at("/imscp:manifest/imscp:resources/imscp:resource[@identifier='#{identifierref}']", NS)
       end
     end
   end

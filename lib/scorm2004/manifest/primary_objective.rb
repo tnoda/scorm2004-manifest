@@ -14,7 +14,7 @@ module Scorm2004
       private
       
       def do_visit
-        error(<<EOS) if el.at('./imsss:mapInfo', NS) && objective_id.nil?
+        error(<<EOS) if @el.at('./imsss:mapInfo', NS) && objective_id.nil?
 If a <primaryObjective> contains an objective map (<mapInfo>), then the objectiveID attribute is required.
 EOS
       end

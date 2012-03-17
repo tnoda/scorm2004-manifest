@@ -13,7 +13,7 @@ module Scorm2004
       private
       
       def do_visit
-        parent_name = el.at('..').name
+        parent_name = @el.at('..').name
         case parent_name
         when 'preConditionRule'
           error("Invalid rule action in <preConditionRule>: #{action}") unless PRE.include?(action)
