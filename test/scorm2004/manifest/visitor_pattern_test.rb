@@ -3,11 +3,11 @@ require_relative '../../helper'
 module Scorm2004
   module Manifest
     class VisitorPatternTest < ActiveSupport::TestCase
+      include PartialManifest
+
       class Visitor
         include VisitorPattern
       end
-
-      include PartialManifest
       
       context 'Visitor visiting a element' do
         setup do
