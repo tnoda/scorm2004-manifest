@@ -12,7 +12,7 @@ module Scorm2004
       private
       
       def do_visit
-        error('Default <resource> not foulnd: ' + default) unless default_resource
+        error('Default <resource> not found: ' + default) unless default_resource
       end
 
       def default_resource
