@@ -4,15 +4,13 @@ module Scorm2004
       include VisitorPattern
       include TextNode
 
-      def self.spm
-        4000
-      end
+      SPM = 4000
 
       private
       
       def do_visit
-        if content.length > self.class.spm
-          error("<adlcp:dataFromLMS> exceeds the SPM of #{self.class.spm}: #{content}")
+        if content.length > SPM
+          error("<adlcp:dataFromLMS> exceeds the SPM of #{SPM}: #{content}")
         end
       end
     end
