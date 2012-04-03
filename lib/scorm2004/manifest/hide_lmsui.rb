@@ -4,14 +4,12 @@ module Scorm2004
       include VisitorPattern
       include TextNode
       
-      def self.vocabulary
-        %w( previous continue exit exitAll abandon abandonAll suspendAll )
-      end
+      VOCABULARY = %w( previous continue exit exitAll abandon abandonAll suspendAll )
 
       private
       
       def do_visit
-        unless self.class.vocabulary.include?(content)
+        unless VOCABULARY.include?(content)
           error("Invalid <adlnav:hideLMSUI> token: #{content}")
         end
       end

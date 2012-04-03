@@ -16,7 +16,12 @@ module Scorm2004
         'outsideAvailableTimeRange'
       ]
 
+      # @attribute [r] operator
+      # @return [String] The +operator+ attribute of <rollupCondition>
       attribute :token, 'operator', vocabulary: %w( not noOp ), default: 'noOp'
+
+      # @attribute [r] condition
+      # @return [String] The +condition+ attribute of <rollupCondition>
       attribute :token, 'condition', vocabulary: CONDITIONS
     end
   end

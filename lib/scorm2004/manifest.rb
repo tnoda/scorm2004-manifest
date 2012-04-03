@@ -54,6 +54,18 @@ require 'scorm2004/manifest/adlseq_objective'
 require 'scorm2004/manifest/adlseq_map_info'
 
 module Scorm2004
+  # @overload Manifest(manifest_file)
+  #   Parse and validate a manifest file.
+  #   Convenience method for Scorm2004::Manifest.parse
+  #   @param [String, IO] manifest_file manifest_file may be a String,
+  #     or any object that responds to read and close such as an IO,
+  #     or StringIO.
+  #   @return [Scorm2004::Manifest::Manifest]
+  #   @example Parse and validate a manifest file
+  #     manifest = Scorm2004::Manifest(open('imsmanifest.xml'))
+  #   @raise This method raises an instance of Scorm2004::Manifest::Error's
+  #     subclass if validation fails.
+  #   @see Scorm2004::Manifest.parse
   def self.Manifest(*args)
     Scorm2004::Manifest.parse(*args)
   end
@@ -67,6 +79,15 @@ module Scorm2004
       'imsss'  => "http://www.imsglobal.org/xsd/imsss"
     }
 
+    # @overload parse(manifest_file)
+    #   Parse and validate a manifest file
+    #   @param [String, IO] manifest_file manifest_file may be a String,
+    #     or any object that responds to read and close such as an IO,
+    #     or StringIO.
+    #   @raise This method raises an instance of Scorm2004::Manifest::Error's
+    #     subclass if validation fails.
+    #   @return [Scorm2004::Manifest::Manifest]
+    #   @see Scorm2004.Manifest
     def self.parse(*args)
       manifest_visitor = Scorm2004::Manifest::Manifest.new
       Nokogiri::XML(*args) { |config| config.strict.noent }.root.accept manifest_visitor

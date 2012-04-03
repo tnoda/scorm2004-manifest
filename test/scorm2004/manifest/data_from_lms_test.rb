@@ -37,7 +37,7 @@ module Scorm2004
         context 'visitng an element whose content is too large' do
           should 'raise exception' do
             assert_raise DataFromLms::Error do
-              el('<dummy>' + 'x' * (DataFromLms.spm + 1) + '</dummy>').accept(@v)
+              el('<dummy>' + 'x' * (DataFromLms::SPM + 1) + '</dummy>').accept(@v)
             end
           end
         end

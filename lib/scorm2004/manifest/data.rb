@@ -4,6 +4,8 @@ module Scorm2004
       include VisitorPattern
       include Children
 
+      # @attribute [r] maps
+      # @return [Array<Map>] <adlcp:map>
       has_one_or_more 'adlcp:map'
     end
   end

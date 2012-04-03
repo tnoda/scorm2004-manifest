@@ -4,6 +4,8 @@ module Scorm2004
       include VisitorPattern
       include Children
 
+      # @attribute sequencings
+      # @return [Array<Sequencing>] <imsss:sequencing>
       has_one_or_more 'imsss:sequencing'
     end
   end

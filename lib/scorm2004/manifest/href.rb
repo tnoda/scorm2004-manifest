@@ -1,6 +1,7 @@
 module Scorm2004
   module Manifest
     module Href
+      # @return [String] The +href+ to which all +xml:base+ attributes have been applied
       def href
         (base ? resolve_href : relative_href).try(:to_s)
       end

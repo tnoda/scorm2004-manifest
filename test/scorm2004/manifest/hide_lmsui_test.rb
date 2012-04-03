@@ -9,7 +9,7 @@ module Scorm2004
         @v = HideLmsui.new
       end
       
-      HideLmsui.vocabulary.each do |token|
+      HideLmsui::VOCABULARY.each do |token|
         tag ="<adlnav:hideLMSUI>#{token}</adlnav:hideLMSUI>" 
         test tag do
           el(tag).accept(@v)

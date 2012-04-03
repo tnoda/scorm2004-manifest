@@ -8,6 +8,8 @@ module Scorm2004
       POST = %w( exitParent exitAll retry retryAll continue previous )
       EXIT = %w( exit )
 
+      # @attribute [r] action
+      # @return [String] The +action+ attribute of <ruleAction>
       attribute :token, 'action', vocabulary: PRE + POST + EXIT
 
       private

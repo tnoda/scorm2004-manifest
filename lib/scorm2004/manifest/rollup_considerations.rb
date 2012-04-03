@@ -5,11 +5,19 @@ module Scorm2004
       include Attributes
       
       CONDITIONS = %w( always ifAttempted ifNotSkipped ifNotSuspended )
+      ATTRIBUTES = [
+        'requiredForSatisfied',
+        'requireForNotSatisfied',
+        'requiredForCompleted',
+        'requireForIncomplete'
+      ]
 
-      %w( requiredForSatisfied requireForNotSatisfied requiredForCompleted requireForIncomplete ).each do |attr|
+      ATTRIBUTES.each do |attr|
         attribute :token, attr, vocabulary: CONDITIONS, default: CONDITIONS.first
       end
       
+      # @attribute [r] measure_satisfaction_if_active
+      # @return [Boolean] The +measureSatisfactionIfActive+ attribute of <rollupConsideration>
       attribute :boolean, 'measureSatisfactionIfActive', default: true
     end
   end

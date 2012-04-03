@@ -19,7 +19,7 @@ module Scorm2004
         end
       end
 
-      TimeLimitAction.vocabulary.each do |token|
+      TimeLimitAction::VOCABULARY.each do |token|
         test "<adlcp:timeLimitAction>#{token}</adlcp:timieLimitAction>" do
           assert_nothing_raised do
             el("<dummy>#{token}</dummy").accept(@v)

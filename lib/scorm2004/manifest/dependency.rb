@@ -4,6 +4,8 @@ module Scorm2004
       include VisitorPattern
       include Attributes
       
+      # @attribute [r] identifierref
+      # @return [String] The identifierref attribute of <dependency>
       attribute :string, 'identifierref'
 
       private

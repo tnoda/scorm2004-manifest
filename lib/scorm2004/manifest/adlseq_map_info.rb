@@ -4,10 +4,12 @@ module Scorm2004
       include VisitorPattern
       include Attributes
 
+      # @attribute [r] target_objective_id
+      # @return [String] The +targetObjectiveID+ attribute of <adlseq:mapInfo>
       attribute :any_uri, 'targetObjectiveID'
 
-      SLOTS = %w( RawScore MinScore MaxScore CompletionStatus ProgressMeasure )
-      %w( read write ).product(SLOTS).map(&:join).each do |attr|
+      elements = %w( RawScore MinScore MaxScore CompletionStatus ProgressMeasure )
+      %w( read write ).product(elements).map(&:join).each do |attr|
         default_value = /^read/ =~ attr ? true : false
         attribute :boolean, attr, default: default_value
       end

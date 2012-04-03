@@ -4,17 +4,17 @@ module Scorm2004
       include VisitorPattern
       include TextNode
       
-      def self.vocabulary
-        [ 'exit, message',
-          'exit,no message',
-          'continue, message',
-          'continue,no message' ]
-      end
+      VOCABULARY = [
+        'exit, message',
+        'exit,no message',
+        'continue, message',
+        'continue,no message'
+      ]
 
       private
       
       def do_visit
-        unless self.class.vocabulary.include?(content)
+        unless VOCABULARY.include?(content)
           error("Invalid <adlcp:timeLimitAction> token: #{content}") 
         end
       end
