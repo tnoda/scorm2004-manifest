@@ -33,14 +33,6 @@ module Scorm2004
             end
           end
         end
-
-        context 'visiting a dependency element with its referencing resource nonexistent' do
-          should 'raise exceptoin' do
-            assert_error do
-              el('<dependency identifierref="k22" />').accept(@v)
-            end
-          end
-        end
       end
 
       private
