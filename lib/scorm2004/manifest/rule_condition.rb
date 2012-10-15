@@ -25,7 +25,7 @@ module Scorm2004
 
       # @attribute [r] referenced_objective
       # @return [String] The +referencedObjective+ attribute of <ruleCondition>
-      attribute :string,  'referencedObjective', allow_nil: true
+      attribute :any_uri,  'referencedObjective', allow_nil: true
 
       # @attribute [r] measure_threshold
       # @return [Float] The +measureThreshold+ attribute of <ruleCondition>
