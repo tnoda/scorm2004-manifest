@@ -32,7 +32,7 @@ module Scorm2004
           base = basename(name)
           attributes << base
           define_method("raw_#{base}") do
-            @el.at("./@#{name}").try(:content) || options[:default].try(:to_s)
+            @el.at("./@#{name}", NS).try(:content) || options[:default].try(:to_s)
           end
           send("#{type}_attribute", name, options)
           attr_reader base
