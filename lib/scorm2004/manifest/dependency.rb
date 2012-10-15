@@ -6,7 +6,7 @@ module Scorm2004
       
       # @attribute [r] identifierref
       # @return [String] The identifierref attribute of <dependency>
-      attribute :string, 'identifierref'
+      attribute :id, 'identifierref'
 
       private
       
