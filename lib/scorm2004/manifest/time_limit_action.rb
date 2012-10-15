@@ -5,9 +5,9 @@ module Scorm2004
       include TextNode
       
       VOCABULARY = [
-        'exit, message',
+        'exit,message',
         'exit,no message',
-        'continue, message',
+        'continue,message',
         'continue,no message'
       ]
 

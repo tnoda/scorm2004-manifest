@@ -52,18 +52,6 @@ module Scorm2004
       # @attribute [r] data
       # @return [Data, nil] <adlcp:data>
       has_zero_or_one      'adlcp:data'
-
-      private
-      
-      def do_visit
-        if identifierref && resource.nil?
-          error("A <resource> element whose identifier is #{identifierref} not found:")
-        end
-      end
-
-      def resource
-        @el.at("/imscp:manifest/imscp:resources/imscp:resource[@identifier='#{identifierref}']", NS)
-      end
     end
   end
 end

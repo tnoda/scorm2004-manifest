@@ -9,6 +9,7 @@ module Scorm2004
         setup do
           @v = Organizations.new
           @v.stubs(:organization_visitor).returns(stub(:visit))
+          @v.stubs(:default_organization).returns(:dummy)
         end
 
         context 'visiting an organizations element' do
@@ -48,6 +49,7 @@ module Scorm2004
           should 'handle XML Base' do
             @v = Organizations.new(base: Pathname('a/b/c'))
             @v.stubs(:organization_visitor).returns(stub(:visit))
+            @v.stubs(:default_organization).returns(:dummy)
             el(<<-XML).accept(@v)
               <organizations default="t41" xml:base="x/y/z/">
                 <organization identifier="t41" />
