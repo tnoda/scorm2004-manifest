@@ -16,12 +16,12 @@ module Scorm2004
 
       private
       
-      def do_visit
-        error('Default <resource> not found: ' + default) unless default_resource
+      def post_visit
+        error('Default <organization> not found: ' + default) unless default_organization
       end
 
-      def default_resource
-        @el.at("/imscp:manifest/imscp:organizations/imscp:organization[@identifier='#{default}']", NS)
+      def default_organization
+        organizations.find { |org| org.identifier == default }
       end
     end
   end
