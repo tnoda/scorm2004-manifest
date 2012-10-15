@@ -67,10 +67,10 @@ module Scorm2004
         def id_attribute(name, options)
           base = basename(name)
           define_method("check_#{base}".intern) do
-            raw = send("raw_#{base}")
-            error("No #{name} attribute.") unless options[:allow_nil] || raw
-            error("Non xs:ID value for the #{name} attribute: #{raw}") unless xs_id?(raw)
-            instance_variable_set("@#{base}".intern, raw)
+            value = send("raw_#{base}").try(:strip)
+            error("No #{name} attribute.") unless options[:allow_nil] || value
+            error("Non xs:ID value for the #{name} attribute: #{value}") unless xs_id?(value)
+            instance_variable_set("@#{base}".intern, value)
           end
         end
         alias :idref_attribute :id_attribute
