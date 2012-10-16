@@ -74,6 +74,13 @@ For example, <organizations> element has one or more
   organization_0 = organizations.organizations[0]
 
 
+Each parsed element also responds to the +to_hash+ method.
+Using this method, you can convert your manifest file into
+Hash or more useful forms.
+
+  json_manifest = Scorm2004::Manifest(open('imsmanifest.xml')).to_hash.to_json
+
+
 == Documentation
 
 To generate scorm2004-manifest's document set, use the following command:

@@ -20,6 +20,17 @@ module Scorm2004
         self
       end
 
+      def to_hash
+        if respond_to? :content
+          content
+        else
+          {}.merge(self.class.respond_to?(:attributes) ? attributes_hash : {})
+            .merge(self.class.respond_to?(:children) ? children_hash : {})
+            .merge(respond_to?(:href) ? {:href => href } : {})
+            .reject { |k, v| v.nil? || v == [] || v == {} }
+        end
+      end
+
       # @return [Nokogiri::XML::Node, nil] The <metadata> element or +nil+
       def metadata
         @el.at('./imscp:metadata', NS)
@@ -41,6 +52,21 @@ module Scorm2004
         self.class.children.each do |child|
           send("visit_#{child}".intern)
         end
+      end
+
+      def attributes_hash
+        Hash[self.class.attributes.map { |attr| [attr, instance_variable_get("@#{attr}")]}]
+      end
+
+      def children_hash
+        Hash[self.class.children.map { |child|
+            value = instance_variable_get("@#{child}")
+            if value.respond_to?(:map)
+              [child, value.map { |v| v.to_hash }]
+            else
+              [child, value.try(:to_hash)]
+            end
+            }]
       end
     end
   end
