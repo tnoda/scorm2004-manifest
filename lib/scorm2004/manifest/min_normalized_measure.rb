@@ -2,11 +2,7 @@ module Scorm2004
   module Manifest
     class MinNormalizedMeasure
       include VisitorPattern
-      
-      # @return [Float] The value of <minNormalizedMeasure>
-      def to_f
-        Float(@el.content)
-      end
+      include DecimalNode
 
       private
       
